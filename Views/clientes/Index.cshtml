@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ferre2.Models.clientes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="mb-4">Index</h2>
+
+@Html.ActionLink(
+    "➕ Nuevo Cliente",
+    "Create",
+    null,
+    new { @class = "btn btn-ferreteria mb-3" }
+)
+<div class="main-container">
+    <table class="table table-hover table-ferreteria">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.id_cliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre_razon_social)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tipo_documento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.numero_documento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ciudad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.departamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fecha_registro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id_cliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_razon_social)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipo_documento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numero_documento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ciudad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_registro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td class="text-nowrap">
+                        @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
+                        @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-secondary" }),
+                        @Html.ActionLink("🗑️", "Delete", "Delete", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+           
+    </table>
+
+</div>

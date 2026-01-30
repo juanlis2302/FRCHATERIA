@@ -1,0 +1,94 @@
+﻿:root {
+    --primary: #1f3a5f;
+    --secondary: #f39c12; 
+    --dark: #2c2c2c;
+    --light: #f4f6f8;
+    --white: #ffffff;
+}
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ==============================
+   Estilos para la navbar
+============================== */
+.nav-ferreteria {
+    background-color: var(--primary);
+}
+
+    .nav-ferreteria .navbar-brand {
+        color: var(--white);
+        font-weight: bold;
+    }
+
+    .nav-ferreteria .nav-link {
+        color: var(--white);
+        font-weight: 500;
+        margin-right: 10px;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+        .nav-ferreteria .nav-link:hover,
+        .nav-ferreteria .nav-link.active {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+/* ==============================
+   CONTENIDO
+============================== */
+.main-container {
+    padding: 30px;
+}
+/* ==============================
+   TABLAS
+============================== */
+.table-ferreteria {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .table-ferreteria thead {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+
+    .table-ferreteria th {
+        font-weight: 600;
+    }
+
+    .table-ferreteria tbody tr:hover {
+        background-color: #f0f0f0;
+    }
+/* ==============================
+   BOTONES
+============================== */
+.btn-ferreteria {
+    background-color: var(--secondary);
+    color: var(--dark);
+    font-weight: bold;
+    border: none;
+}
+
+    .btn-ferreteria:hover {
+        background-color: #d68910;
+        color: var(--dark);
+    }
+
+.btn-outline-ferreteria {
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+    .btn-outline-ferreteria:hover {
+        background-color: var(--secondary);
+        color: var(--dark);
+    }
