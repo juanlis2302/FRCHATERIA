@@ -4,119 +4,91 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="main-container">
 
-<div>
-    <h4>facturas</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.numero_factura)
-        </dt>
+    <div class="table-card">
 
-        <dd>
-            @Html.DisplayFor(model => model.numero_factura)
-        </dd>
+        <!-- HEADER -->
+        <div class="section-header">
+            <div class="header-title">
+                <h2>Detalles de la Factura</h2>
+            </div>
+            <div>
+                <a href="Edit/@Model.id_factura" class="btn btn-outline-ferreteria">✏️ Editar</a>
+                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_emision)
-        </dt>
+        <!-- DETALLES -->
+        <div class="card-content p-4">
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha_emision)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Número de Factura:</span>
+                <span class="detalle-value">@Model.numero_factura</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_vencimiento)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Fecha de Emisión:</span>
+                <span class="detalle-value">@Model.fecha_emision</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha_vencimiento)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Fecha de Vencimiento:</span>
+                <span class="detalle-value">@Model.fecha_vencimiento</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.subtotal)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Subtotal:</span>
+                <span class="detalle-value">@Model.subtotal</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.subtotal)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Total Impuestos:</span>
+                <span class="detalle-value">@Model.total_impuestos</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total_impuestos)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Total Descuentos:</span>
+                <span class="detalle-value">@Model.total_descuentos</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.total_impuestos)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Total:</span>
+                <span class="detalle-value">@Model.total</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total_descuentos)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Estado:</span>
+                <span class="detalle-value">@Model.estado</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.total_descuentos)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Método de Pago:</span>
+                <span class="detalle-value">@Model.metodo_pago</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Notas:</span>
+                <span class="detalle-value">@Model.notas</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.total)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Fecha de Creación:</span>
+                <span class="detalle-value">@Model.fecha_creacion</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Fecha de Modificación:</span>
+                <span class="detalle-value">@Model.fecha_modificacion</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.estado)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Cliente:</span>
+                <span class="detalle-value">@Model.clientes.nombre_razon_social</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.metodo_pago)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.metodo_pago)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.notas)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.notas)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_creacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_creacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_modificacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.clientes.nombre_razon_social)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.clientes.nombre_razon_social)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_factura }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

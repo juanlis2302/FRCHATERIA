@@ -3,19 +3,28 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="main-container">
 
-<h2 class="mb-4">Index</h2>
+    <div class="table-card">
 
-@Html.ActionLink(
+        <div class="section-header">
+    <div class="header-title">
+        <h2>Clientes</h2>
+    </div>
+
+    <a href="#" class="btn btn-ferreteria">
+       @Html.ActionLink(
     "➕ Nuevo Cliente",
     "Create",
     null,
     new { @class = "btn btn-ferreteria mb-3" }
 )
-<div class="main-container">
-    <table class="table table-hover table-ferreteria">
-        <thead>
-            <tr>
+    </a>
+</div>
+
+        <table class="table table-hover table-ferreteria">
+            <thead>
+                <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.id_cliente)
                 </th>
@@ -51,8 +60,9 @@
                 </th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+
+            <tbody>
             @foreach (var item in Model)
             {
                 <tr>
@@ -87,17 +97,16 @@
                         @Html.DisplayFor(modelItem => item.fecha_registro)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.estado)
+                        @Html.DisplayFor(modelItem => item.estado, new { @class = "badge bg-success" })
                     </td>
-                    <td class="text-nowrap">
+                    <td>
                         @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
                         @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-secondary" }),
                         @Html.ActionLink("🗑️", "Delete", "Delete", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-danger" })
                     </td>
                 </tr>
-            }
-        </tbody>
-           
-    </table>
+            }                   
+            </tbody>
+        </table>
 
-</div>
+    </div>

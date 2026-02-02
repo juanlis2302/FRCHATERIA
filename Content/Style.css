@@ -4,15 +4,33 @@
     --dark: #2c2c2c;
     --light: #f4f6f8;
     --white: #ffffff;
-}
-body {
-    background-color: var(--light);
-    color: var(--dark);
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+
 }
 
-a {
-    text-decoration: none;
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    background-image: url('Img/fondoferre.jpg');
+    position: relative;
+    color: var(--dark);
+    font-family:Tahoma, sans-serif;
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35); /* oscuro elegante */
+    z-index: -1;
+    inset: 0;
 }
 
 /* ==============================
@@ -40,55 +58,272 @@ a {
             background-color: var(--secondary);
             color: var(--dark);
         }
+
 /* ==============================
-   CONTENIDO
+   CONTENEDOR PRINCIPAL
 ============================== */
+
 .main-container {
-    padding: 30px;
-}
-/* ==============================
-   TABLAS
-============================== */
-.table-ferreteria {
     background-color: var(--white);
-    border-radius: 8px;
-    overflow: hidden;
+    padding: 35px;
+    margin: 40px auto;
+    border-radius: 16px;
+    border-top: 20px solid var(--secondary);
+    width: 95%;
+    max-width: 1400px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.08),
+        0 2px 6px rgba(0,0,0,0.05);
+
+    border: 1px solid #eaeaea;
 }
-
-    .table-ferreteria thead {
-        background-color: var(--primary);
-        color: var(--white);
-    }
-
-    .table-ferreteria th {
-        font-weight: 600;
-    }
-
-    .table-ferreteria tbody tr:hover {
-        background-color: #f0f0f0;
-    }
 /* ==============================
-   BOTONES
+   HEADER PRO (FIXED)
 ============================== */
-.btn-ferreteria {
-    background-color: var(--secondary);
-    color: var(--dark);
-    font-weight: bold;
-    border: none;
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 32px;
+
+    background: var(--white);
+
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+/* contenedor del título */
+.header-title {
+    display: flex;
+    flex-direction: column;
 }
 
-    .btn-ferreteria:hover {
-        background-color: #d68910;
-        color: var(--dark);
-    }
+/* título */
+.section-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* línea amarilla */
+.section-header h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    background: var(--secondary);
+    margin-top: 6px;
+    border-radius: 4px;
+}
+
+
+/* ===== TITULO ===== */
+
+.section-header h1,
+.section-header h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--primary);
+    position: relative;
+}
+
+
+/* ===== LINEA AMARILLA ===== */
+
+.section-header h1::after,
+.section-header h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    margin-top: 6px;
+
+    background: var(--secondary);
+    border-radius: 4px;
+}
+
+
+/* ===== BOTÓN HEADER ===== */
+
+.section-header .btn-ferreteria {
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 700;
+
+    border-radius: 8px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all .25s ease;
+}
+
+.section-header .btn-ferreteria:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* ==============================
+   TABLA FERRETERÍA (CARD PRO)
+============================== */
+
+.table-ferreteria {
+    background: var(--white);
+
+    /* SOLO radios abajo para unir con header */
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.15),
+        0 5px 10px rgba(0,0,0,0.08);
+}
+
+.table-ferreteria {
+    transition: transform .2s ease;
+}
+
+.table-ferreteria:hover {
+    transform: translateY(-2px);
+}
+/* ===== HEADER TABLA ===== */
+
+.table-ferreteria thead {
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        #2c4f80
+    );
+    color: var(--white);
+    text-align: center;
+}
+
+
+/* ===== CELDAS ===== */
+
+.table-ferreteria th,
+.table-ferreteria td {
+    padding: 14px 12px;
+    vertical-align: middle;
+}
+
+
+/* ===== FILAS ===== */
+
+.table-ferreteria tbody tr {
+    transition: all .15s ease;
+}
+
+.table-ferreteria tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+
+/* ===== BOTONES ACCIONES ===== */
+
+.table-ferreteria td .btn {
+    width: 36px;
+    height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+    padding: 0;
+}
+
+
+
+/* ==============================
+   BOTONES GENERALES
+============================== */
+
+.btn-ferreteria {
+    background: #4f46e5;
+    color: white;
+    border: none;
+      letter-spacing: .3px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.btn-ferreteria:hover {
+    background-color: #d68910;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
 
 .btn-outline-ferreteria {
-    border: 2px solid var(--secondary);
+    border: 2px solid var(--dark);
     color: var(--secondary);
     font-weight: bold;
 }
 
-    .btn-outline-ferreteria:hover {
-        background-color: var(--secondary);
-        color: var(--dark);
-    }
+.btn-outline-ferreteria:hover {
+    background-color: var(--secondary);
+    color: var(--dark);
+}
+/* FORM estilo ferretería */
+.form-ferreteria label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.form-ferreteria .form-control {
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    transition: .2s;
+}
+
+.form-ferreteria .form-control:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(255,193,7,.25);
+}
+
+/* SECCION DE DETALLES */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Cada detalle como fila */
+.detalle-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: var(--light);
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.detalle-item:hover {
+    background: #f9f9f9;
+    transform: translateY(-1px);
+}
+
+/* Label del detalle */
+.detalle-label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Valor del detalle */
+.detalle-value {
+    color: var(--dark);
+}

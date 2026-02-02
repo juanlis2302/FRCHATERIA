@@ -4,87 +4,71 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="main-container">
 
-<div>
-    <h4>productos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.codigo)
-        </dt>
+    <div class="table-card">
 
-        <dd>
-            @Html.DisplayFor(model => model.codigo)
-        </dd>
+        <!-- HEADER -->
+        <div class="section-header">
+            <div class="header-title">
+                <h2>Detalles del Producto</h2>
+            </div>
+            <div>
+                <a href="Edit/@Model.id_producto" class="btn btn-outline-ferreteria">✏️ Editar</a>
+                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+        <!-- DETALLES -->
+        <div class="card-content p-4">
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Código:</span>
+                <span class="detalle-value">@Model.codigo</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Nombre:</span>
+                <span class="detalle-value">@Model.nombre</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Descripción:</span>
+                <span class="detalle-value">@Model.descripcion</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.precio_base)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Precio Base:</span>
+                <span class="detalle-value">@Model.precio_base</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.precio_base)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">IVA %:</span>
+                <span class="detalle-value">@Model.iva_porcentaje</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.iva_porcentaje)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Categoría:</span>
+                <span class="detalle-value">@Model.categoria</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.iva_porcentaje)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Stock:</span>
+                <span class="detalle-value">@Model.stock</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.categoria)
-        </dt>
+            <div class="detalle-item">
+                <span class="detalle-label">Estado:</span>
+                <span class="detalle-value">@Model.estado</span>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.categoria)
-        </dd>
+            <div class="detalle-item">
+                <span class="detalle-label">Fecha de Creación:</span>
+                <span class="detalle-value">@Model.fecha_creacion</span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.stock)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.stock)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_creacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_creacion)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_producto }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

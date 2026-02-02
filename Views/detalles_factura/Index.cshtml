@@ -3,14 +3,21 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="main-container">
 
-<h2>Index</h2>
+    <div class="table-card">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+        <div class="section-header">
+    <div class="header-title">
+        <h2>Clientes</h2>
+    </div>
+<p class="btn btn-ferreteria">
+    @Html.ActionLink("➕ Nuevo Detalle Factura", "Create")
 </p>
-<table class="table">
-    <tr>
+   </div>
+        <table class="table table-hover table-ferreteria">
+            <thead>
+                <tr>
         <th>
             @Html.DisplayNameFor(model => model.descripcion)
         </th>
@@ -44,9 +51,11 @@
         <th>
             @Html.DisplayNameFor(model => model.productos.codigo)
         </th>
-        <th></th>
     </tr>
+            </thead>
 
+            <tbody>
+                
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -82,12 +91,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.productos.codigo)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_detalle }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_detalle }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_detalle })
-        </td>
+            <td class="text-nowrap">
+                @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
+                @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-secondary" }),
+                @Html.ActionLink("🗑️", "Borrar", "Delete", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-danger" })
+            </td>
     </tr>
 }
-
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -3,14 +3,21 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="main-container">
 
-<h2>Index</h2>
+    <div class="table-card">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+        <div class="section-header">
+    <div class="header-title">
+        <h2>Facturas</h2>
+    </div>
+        <p class="btn btn-ferreteria">
+            @Html.ActionLink("➕ Crear Nueva Factura", "Create")
+        </p>
+</div>
+        <table class="table table-hover table-ferreteria">
+            <thead>
+                   <tr>
         <th>
             @Html.DisplayNameFor(model => model.numero_factura)
         </th>
@@ -50,10 +57,11 @@
         <th>
             @Html.DisplayNameFor(model => model.clientes.nombre_razon_social)
         </th>
-        <th></th>
     </tr>
+            </thead>
 
-@foreach (var item in Model) {
+            <tbody>
+                @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.numero_factura)
@@ -77,7 +85,7 @@
             @Html.DisplayFor(modelItem => item.total)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.estado)
+            @Html.DisplayFor(modelItem => item.estado, new { @class = "badge bg-success" })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.metodo_pago)
@@ -95,11 +103,14 @@
             @Html.DisplayFor(modelItem => item.clientes.nombre_razon_social)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_factura }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_factura }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_factura })
+            @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
+            @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-secondary" }),
+            @Html.ActionLink("🗑️", "Delete", "Delete", new { id = item.id_factura }, new { @class = "btn btn-sm btn-danger" })
         </td>
     </tr>
 }
+            </tbody>
+        </table>
+    </div>
 
-</table>
+</div>
