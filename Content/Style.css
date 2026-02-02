@@ -14,7 +14,7 @@ html, body {
 
 body {
     min-height: 100vh;
-    background-image: url('Img/fondoferre.jpg');
+    background-image: url('../fondoferre.jpg');
     position: relative;
     color: var(--dark);
     font-family:Tahoma, sans-serif;
