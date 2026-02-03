@@ -23,75 +23,114 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="card-content p-4">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card-content p-4">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.nombre_razon_social)
-                    @Html.EditorFor(model => model.nombre_razon_social, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.nombre_razon_social, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.nombre_razon_social)
+            @Html.EditorFor(model => model.nombre_razon_social, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombre_razon_social, "", new { @class = "text-danger" })
+        </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.tipo_documento)
-                    @Html.EditorFor(model => model.tipo_documento, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.tipo_documento, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.tipo_documento)
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.numero_documento)
-                    @Html.EditorFor(model => model.numero_documento, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.numero_documento, "", new { @class = "text-danger" })
-                </div>
+            @Html.DropDownListFor(
+                model => model.tipo_documento,
+                new SelectList(new[]
+                {
+                    new { Value = "CC", Text = "Cédula de Ciudadanía" },
+                    new { Value = "TI", Text = "Tarjeta de Identidad" },
+                    new { Value = "CE", Text = "Cédula de Extranjería" },
+                    new { Value = "Pasaporte", Text = "Pasaporte" },
+                    new { Value = "RC", Text = "Registro Civil" }
+                }, "Value", "Text"),
+                "-- Seleccione tipo de documento --",
+                new { @class = "form-control" }
+            )
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.direccion)
-                    @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
-                </div>
+            @Html.ValidationMessageFor(model => model.tipo_documento, "", new { @class = "text-danger" })
+        </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.telefono)
-                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
-                </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.email)
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.numero_documento)
+            @Html.TextBoxFor(model => model.numero_documento, new
+            {
+                @class = "form-control",
+                type = "text",
+                oninput = "this.value = this.value.replace(/[^0-9]/g, '')",
+                maxlength = "15"
+            })
+            @Html.ValidationMessageFor(model => model.numero_documento, "", new { @class = "text-danger" })
+        </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.ciudad)
-                    @Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.direccion)
+            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+        </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.departamento)
-                    @Html.EditorFor(model => model.departamento, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.telefono)
+            @Html.TextBoxFor(model => model.telefono, new
+            {
+                @class = "form-control",
+                type = "text",
+                oninput = "this.value = this.value.replace(/[^0-9]/g, '')",
+                maxlength = "15"
+            })
+            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+        </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.fecha_registro)
-                    @Html.EditorFor(model => model.fecha_registro, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                    @Html.ValidationMessageFor(model => model.fecha_registro, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.email)
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(model => model.estado)
-                    @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.ciudad)
+            @Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
+        </div>
 
-                <!-- BOTÓN CREAR -->
-                <div class="form-item mt-3">
-                    <input type="submit" value="Crear Cliente" class="btn btn-ferreteria" />
-                </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.departamento)
+            @Html.EditorFor(model => model.departamento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
+        </div>
 
-            </div>
+        <div class="form-item">
+            @Html.LabelFor(model => model.fecha_registro)
+            @Html.EditorFor(model => model.fecha_registro, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.fecha_registro, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-item">
+            @Html.LabelFor(model => model.estado)
+
+            @Html.DropDownListFor(
+                model => model.estado,
+                new SelectList(new[]
+                {
+                    new { Value = "Activo", Text = "Activo" },
+                    new { Value = "Inactivo", Text = "Inactivo" }
+                }, "Value", "Text"),
+                "-- Seleccione estado --",
+                new { @class = "form-control" }
+            )
+
+            @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+        </div>
+
+
+        <!-- BOTÓN CREAR -->
+        <div class="form-item mt-3">
+            <input type="submit" value="Crear Cliente" class="btn btn-outline-secondary" />
+        </div>
+
+    </div>
         }
 
     </div>

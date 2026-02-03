@@ -8,109 +8,111 @@
     <div class="table-card">
 
         <div class="section-header">
-    <div class="header-title">
-        <h2>Facturas</h2>
-    </div>
-        <p class="btn btn-ferreteria">
-            @Html.ActionLink("➕ Crear Nueva Factura", "Create")
-        </p>
-</div>
-        <table class="table table-hover table-ferreteria">
-            <thead>
-                   <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.numero_factura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_emision)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_vencimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.subtotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.total_impuestos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.total_descuentos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.metodo_pago)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.notas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_creacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_modificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.clientes.nombre_razon_social)
-        </th>
-    </tr>
-            </thead>
+            <div class="header-title">
+                <h2>Facturas</h2>
+            </div>
+            <p class="btn btn-ferreteria">
+                @Html.ActionLink("➕ Crear Nueva Factura", "Create")
+            </p>
+        </div>
+        <div class="table-wrapper">
+            <table class="table table-hover table-ferreteria">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.numero_factura)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fecha_emision)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fecha_vencimiento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.subtotal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total_impuestos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total_descuentos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.estado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.metodo_pago)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.notas)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fecha_creacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fecha_modificacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.clientes.nombre_razon_social)
+                        </th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.numero_factura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_emision)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_vencimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.subtotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total_impuestos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total_descuentos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado, new { @class = "badge bg-success" })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.metodo_pago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.notas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_modificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.clientes.nombre_razon_social)
-        </td>
-        <td>
-            @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
-            @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-secondary" }),
-            @Html.ActionLink("🗑️", "Delete", "Delete", new { id = item.id_factura }, new { @class = "btn btn-sm btn-danger" })
-        </td>
-    </tr>
-}
-            </tbody>
-        </table>
-    </div>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.numero_factura)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fecha_emision)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fecha_vencimiento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.subtotal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.total_impuestos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.total_descuentos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.total)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.estado, new { @class = "badge bg-success" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.metodo_pago)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.notas)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fecha_creacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fecha_modificacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.clientes.nombre_razon_social)
+                            </td>
+                            <td>
+                                @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
+                                @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-secondary" }),
+                                @Html.ActionLink("🗑️", "Delete", "Delete", new { id = item.id_factura }, new { @class = "btn btn-sm btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
-</div>
+    </div>

@@ -14,11 +14,12 @@
                 <h2>Detalles del Cliente</h2>
             </div>
             <div>
-                <a href="Edit/@Model.id_cliente" class="btn btn-outline-ferreteria">✏️ Editar</a>
-                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
+                @Html.ActionLink("✏ Editar", "Edit", new { id = @Model.id_cliente }, new { @class = "btn btn-sm btn-outline-secondary" })
+                @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-secondary" })
+
             </div>
         </div>
-
+        
         <!-- DETALLES -->
         <div class="card-content p-4">
 
