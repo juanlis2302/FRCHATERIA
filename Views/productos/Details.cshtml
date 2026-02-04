@@ -4,69 +4,65 @@
     ViewBag.Title = "Details";
 }
 
-<div class="main-container">
+<div class="productos-wrapper">
 
-    <div class="table-card">
+    <!-- HEADER -->
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2>Detalles del Producto</h2>
+        </div>
+        <div>
+            @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-ferreteria" })
+        </div>
+    </div>
 
-        <!-- HEADER -->
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Detalles del Producto</h2>
-            </div>
-            <div>
-                @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
-                @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-ferreteria" })
-            </div>
+    <!-- DETALLES -->
+    <div class="card-producto-nuevo card-content p-4">
+
+        <div class="detalle-item">
+            <span class="detalle-label">Código:</span>
+            <span class="detalle-value">@Model.codigo</span>
         </div>
 
-        <!-- DETALLES -->
-        <div class="card-content p-4">
+        <div class="detalle-item">
+            <span class="detalle-label">Nombre:</span>
+            <span class="detalle-value">@Model.nombre</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Código:</span>
-                <span class="detalle-value">@Model.codigo</span>
-            </div>
+        <div class="detalle-item">
+            <span class="detalle-label">Descripción:</span>
+            <span class="detalle-value">@Model.descripcion</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Nombre:</span>
-                <span class="detalle-value">@Model.nombre</span>
-            </div>
+        <div class="detalle-item">
+            <span class="detalle-label">Precio Base:</span>
+            <span class="detalle-value">@Model.precio_base</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Descripción:</span>
-                <span class="detalle-value">@Model.descripcion</span>
-            </div>
+        <div class="detalle-item">
+            <span class="detalle-label">IVA %:</span>
+            <span class="detalle-value">@Model.iva_porcentaje</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Precio Base:</span>
-                <span class="detalle-value">@Model.precio_base</span>
-            </div>
+        <div class="detalle-item">
+            <span class="detalle-label">Categoría:</span>
+            <span class="detalle-value">@Model.categoria</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">IVA %:</span>
-                <span class="detalle-value">@Model.iva_porcentaje</span>
-            </div>
+        <div class="detalle-item">
+            <span class="detalle-label">Stock:</span>
+            <span class="detalle-value">@Model.stock</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Categoría:</span>
-                <span class="detalle-value">@Model.categoria</span>
-            </div>
+        <div class="detalle-item">
+            <span class="detalle-label">Estado:</span>
+            <span class="detalle-value">@Model.estado</span>
+        </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Stock:</span>
-                <span class="detalle-value">@Model.stock</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Estado:</span>
-                <span class="detalle-value">@Model.estado</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Creación:</span>
-                <span class="detalle-value">@Model.fecha_creacion</span>
-            </div>
-
+        <div class="detalle-item">
+            <span class="detalle-label">Fecha de Creación:</span>
+            <span class="detalle-value">@Model.fecha_creacion</span>
         </div>
 
     </div>
