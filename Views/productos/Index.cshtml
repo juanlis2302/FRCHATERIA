@@ -80,9 +80,9 @@
             @Html.DisplayFor(modelItem => item.fecha_creacion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
-            @Html.ActionLink("Details", "Details", new { id=item.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_producto }, new { @class = "btn btn-sm btn-danger" })
+            @Html.ActionLink("✏️", "Edit", new { id=item.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+            @Html.ActionLink("👁️", "Details", new { id=item.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+            @Html.ActionLink("🗑️", "Delete", new { id=item.id_producto }, new { @class = "btn btn-sm btn-danger" })
              <td class="text-nowrap">
                     </td>
         </td>

@@ -9,7 +9,7 @@
 
         <div class="section-header">
             <div class="header-title">
-                <h2>Clientes</h2>
+                <h2>Detalle Facturas</h2>
             </div>
             <p class="btn btn-ferreteria">
                 @Html.ActionLink("➕ Nuevo Detalle Factura", "Create")
@@ -19,6 +19,9 @@
             <table class="table table-hover table-ferreteria">
                 <thead>
                     <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.id_detalle)
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.descripcion)
                         </th>
@@ -61,6 +64,9 @@
                     {
                         <tr>
                             <td>
+                                @Html.DisplayFor(model => item.id_detalle)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.descripcion)
                             </td>
                             <td>
@@ -94,8 +100,8 @@
                                 @Html.DisplayFor(modelItem => item.productos.codigo)
                             </td>
                             <td class="text-nowrap">
-                                @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
-                                @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-secondary" }),
+                                @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+                                @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-secondary" })
                                 @Html.ActionLink("🗑️", "Borrar", "Delete", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-danger" })
                             </td>
                         </tr>

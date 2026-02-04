@@ -11,9 +11,12 @@
             <div class="header-title">
                 <h2>Facturas</h2>
             </div>
-            <p class="btn btn-ferreteria">
-                @Html.ActionLink("➕ Crear Nueva Factura", "Create")
+            <p class="">
+                @Html.ActionLink("➕ Crear Nueva Factura", "Create", new { @class = "btn btn-ferreteria" })
             </p>
+            <P>
+                @Html.ActionLink("Detalle Factura", "Index", "detalles_factura", new { area = "" }, new { @class = "btn btn-ferreteria" })
+            </P>        
         </div>
         <div class="table-wrapper">
             <table class="table table-hover table-ferreteria">

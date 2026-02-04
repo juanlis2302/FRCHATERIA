@@ -14,8 +14,8 @@
                 <h2>Detalles del Producto</h2>
             </div>
             <div>
-                <a href="Edit/@Model.id_producto" class="btn btn-outline-ferreteria">✏️ Editar</a>
-                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
+                @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+                @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-ferreteria" })
             </div>
         </div>
 
