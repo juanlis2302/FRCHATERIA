@@ -2,34 +2,40 @@
 
 <div class="productos-wrapper">
 
+    <!-- HEADER -->
     <div class="productos-header-nuevo">
         <div class="header-title">
             <h2>Productos</h2>
         </div>
-        <p class="btn-agregar-producto">
-            @Html.ActionLink("➕ Nuevo Producto", "Create")
-        </p>
+        <div class="btn-agregar-producto">
+            @Html.ActionLink("➕ Nuevo Producto", "Create", null, new { @class = "btn btn-ferreteria" })
+        </div>
     </div>
 
+    <!-- GRID DE PRODUCTOS -->
     <div class="productos-grid-nuevo">
         @foreach (var item in Model)
         {
-            <div class="card-producto-nuevo">
-                <h3>@item.nombre</h3>
+            <div class="card-producto-nuevo p-4">
+
+                <h3 class="producto-nombre-nuevo">@item.nombre</h3>
+
                 <div class="producto-info-nuevo">
-                    <span><label>Código:</label> @item.codigo</span>
-                    <span><label>Descripción:</label> @item.descripcion</span>
-                    <span><label>Precio:</label> @item.precio_base</span>
-                    <span><label>IVA:</label> @item.iva_porcentaje%</span>
-                    <span><label>Stock:</label> @item.stock</span>
-                    <span><label>Estado:</label> @item.estado</span>
-                    <span><label>Categoría:</label> @item.categoria</span>
+                    <div><label>Código:</label> @item.codigo</div>
+                    <div><label>Descripción:</label> @item.descripcion</div>
+                    <div><label>Precio:</label> @item.precio_base</div>
+                    <div><label>IVA:</label> @item.iva_porcentaje%</div>
+                    <div><label>Stock:</label> @item.stock</div>
+                    <div><label>Estado:</label> @item.estado</div>
+                    <div><label>Categoría:</label> @item.categoria</div>
                 </div>
-                <div class="card-buttons-nuevo">
-                    <button class="btn-producto-accion btn-edit-nuevo">✏️ Editar</button>
-                    <button class="btn-producto-accion btn-view-nuevo">👁️ Ver</button>
-                    <button class="btn-producto-accion btn-delete-nuevo">🗑️ Eliminar</button>
+
+                <div class="card-buttons-nuevo mt-3">
+                    <a href="@Url.Action("Edit", new { id = item.id_producto })" class="btn btn-ferreteria btn-edit-nuevo">✏️ Editar</a>
+                    <a href="@Url.Action("Details", new { id = item.id_producto })" class="btn btn-outline-ferreteria btn-view-nuevo">👁️ Ver</a>
+                    <a href="@Url.Action("Delete", new { id = item.id_producto })" class="btn btn-danger btn-delete-nuevo">🗑️ Eliminar</a>
                 </div>
+
             </div>
         }
     </div>
