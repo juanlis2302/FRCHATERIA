@@ -14,7 +14,10 @@
                 <h2>Detalles de la Factura</h2>
             </div>
             <div>
-                <a href="Edit/@Model.id_factura" class="btn btn-outline-ferreteria">✏️ Editar</a>
+                <p>
+                    @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+                    @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-secondary" })
+                </p>
                 <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
             </div>
         </div>

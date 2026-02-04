@@ -108,9 +108,9 @@
                                 @Html.DisplayFor(modelItem => item.clientes.nombre_razon_social)
                             </td>
                             <td>
-                                @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" }),
-                                @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-secondary" }),
-                                @Html.ActionLink("🗑️", "Delete", "Delete", new { id = item.id_factura }, new { @class = "btn btn-sm btn-danger" })
+                                @Html.ActionLink("✏️","Edit", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" })
+                                @Html.ActionLink("👁️","Details", new { id = item.id_factura }, new { @class = "btn btn-sm btn-outline-secondary" })
+                                @Html.ActionLink("🗑️","Delete", new { id = item.id_factura }, new { @class = "btn btn-sm btn-danger" })
                             </td>
                         </tr>
                     }

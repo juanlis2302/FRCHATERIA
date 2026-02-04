@@ -14,6 +14,8 @@ namespace ferre2.Controllers
     {
         private ferre2DBEntities1 db = new ferre2DBEntities1();
 
+        [Authorize]
+
         // GET: productos
         public ActionResult Index()
         {

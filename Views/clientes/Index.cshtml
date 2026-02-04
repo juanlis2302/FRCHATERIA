@@ -3,21 +3,24 @@
 @{
     ViewBag.Title = "Index";
 }
+@{
+    ViewBag.Title = "Index";
+}
 <div class="main-container">
 
     <div class="table-card">
 
         <div class="section-header">
-    <div class="header-title">
-        <h2>Clientes</h2>
-    </div>
-       @Html.ActionLink(
-    "➕ Nuevo Cliente",
-    "Create",
-    null,
-    new { @class = "btn btn-ferreteria mb-3" }
-)
-</div>
+            <div class="header-title">
+                <h2>Clientes</h2>
+            </div>
+            @Html.ActionLink(
+         "➕ Nuevo Cliente",
+         "Create",
+         null,
+         new { @class = "btn btn-ferreteria mb-3" }
+     )
+        </div>
         <div class="table-wrapper">
             <table class="table table-hover table-ferreteria">
                 <thead>
@@ -98,7 +101,7 @@
                             <td>
                                 @Html.ActionLink("✏️", "Edit", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-ferreteria" })
                                 @Html.ActionLink("👁️", "Details", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-secondary" })
-                                @Html.ActionLink("🗑️","Delete", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-danger" })
+                                @Html.ActionLink("🗑️", "Delete", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-danger" })
                             </td>
                         </tr>
                     }
@@ -106,5 +109,5 @@
             </table>
 
         </div>
-       
+
     </div>

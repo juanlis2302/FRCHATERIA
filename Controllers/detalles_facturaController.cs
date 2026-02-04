@@ -13,7 +13,8 @@ namespace ferre2.Controllers
     public class detalles_facturaController : Controller
     {
         private ferre2DBEntities1 db = new ferre2DBEntities1();
-
+        
+        [Authorize]
         // GET: detalles_factura
         public ActionResult Index()
         {

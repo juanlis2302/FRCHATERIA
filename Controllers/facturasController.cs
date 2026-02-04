@@ -14,6 +14,7 @@ namespace ferre2.Controllers
     {
         private ferre2DBEntities1 db = new ferre2DBEntities1();
 
+        [Authorize]
         // GET: facturas
         public ActionResult Index()
         {
