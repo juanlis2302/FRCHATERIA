@@ -1,99 +1,37 @@
 ﻿@model IEnumerable<ferre2.Models.productos>
 
-@{
-    ViewBag.Title = "Index";
-}
-    
-<div class="main-container">
+<div class="productos-wrapper">
 
-    <div class="table-card">
-        <div class="section-header">
-    <div class="header-title">
-        <h2>Productos</h2>
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2>Productos</h2>
+        </div>
+        <p class="btn-agregar-producto">
+            @Html.ActionLink("➕ Nuevo Producto", "Create")
+        </p>
     </div>
-    <p class="btn btn-ferreteria">
-    @Html.ActionLink("➕ Nuevo Producto", "Create")
-    </p>
-</div>
-        <table class="table table-hover table-ferreteria">
-            <thead>
-                    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio_base)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.iva_porcentaje)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.categoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.stock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_creacion)
-        </th>
-        <th></th>
-    </tr>
-            </thead>
 
-            <tbody>
-                @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.codigo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio_base)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.iva_porcentaje)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.stock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_creacion)
-        </td>
-        <td>
-            @Html.ActionLink("✏️", "Edit", new { id=item.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
-            @Html.ActionLink("👁️", "Details", new { id=item.id_producto }, new { @class = "btn btn-sm btn-outline-ferreteria" })
-            @Html.ActionLink("🗑️", "Delete", new { id=item.id_producto }, new { @class = "btn btn-sm btn-danger" })
-             <td class="text-nowrap">
-                    </td>
-        </td>
-    </tr>
-}
-            </tbody>
-        </table>
-
+    <div class="productos-grid-nuevo">
+        @foreach (var item in Model)
+        {
+            <div class="card-producto-nuevo">
+                <h3>@item.nombre</h3>
+                <div class="producto-info-nuevo">
+                    <span><label>Código:</label> @item.codigo</span>
+                    <span><label>Descripción:</label> @item.descripcion</span>
+                    <span><label>Precio:</label> @item.precio_base</span>
+                    <span><label>IVA:</label> @item.iva_porcentaje%</span>
+                    <span><label>Stock:</label> @item.stock</span>
+                    <span><label>Estado:</label> @item.estado</span>
+                    <span><label>Categoría:</label> @item.categoria</span>
+                </div>
+                <div class="card-buttons-nuevo">
+                    <button class="btn-producto-accion btn-edit-nuevo">✏️ Editar</button>
+                    <button class="btn-producto-accion btn-view-nuevo">👁️ Ver</button>
+                    <button class="btn-producto-accion btn-delete-nuevo">🗑️ Eliminar</button>
+                </div>
+            </div>
+        }
     </div>
 
 </div>
-
-<table class="table">
-</table>

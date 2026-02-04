@@ -10,7 +10,7 @@
 
     <div class="main-container">
 
-        <!-- CARD -->
+        <!-- CARD PRINCIPAL -->
         <div class="table-card">
 
             <!-- HEADER ESTILO FERRETERÍA -->
@@ -22,76 +22,85 @@
             </div>
 
             <!-- FORMULARIO -->
-            <form class="p-4 form-ferreteria">
+            <div class="card-content p-4 form-ferreteria">
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.id_producto)
 
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.codigo)
-                        @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.nombre)
-                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.descripcion)
-                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.precio_base)
-                        @Html.EditorFor(model => model.precio_base, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.precio_base, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.iva_porcentaje)
-                        @Html.EditorFor(model => model.iva_porcentaje, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.iva_porcentaje, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.categoria)
-                        @Html.EditorFor(model => model.categoria, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.categoria, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.stock)
-                        @Html.EditorFor(model => model.stock, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.estado)
-                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.fecha_creacion)
-                        @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
-                    </div>
-
+                <div class="form-item">
+                    @Html.LabelFor(model => model.codigo)
+                    @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control form-ferreteria", type="number", min="0" } })
+                    @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
                 </div>
 
-                <div class="text-end mt-4">
+                <div class="form-item">
+                    @Html.LabelFor(model => model.nombre)
+                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
+                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.descripcion)
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.precio_base)
+                    @Html.EditorFor(model => model.precio_base, new { htmlAttributes = new { @class = "form-control form-ferreteria", type="number", min="0", step="0.01" } })
+                    @Html.ValidationMessageFor(model => model.precio_base, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.iva_porcentaje)
+                    <select class="form-control form-ferreteria" asp-for="iva_porcentaje">
+                        @for (int i = 0; i <= 19; i++)
+                        {
+                            <option value="@i" @(Model.iva_porcentaje == i ? "selected" : "")>@i%</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.iva_porcentaje, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.categoria)
+                    <select class="form-control form-ferreteria" asp-for="categoria">
+                        <option value="Ferretería General" @(Model.categoria=="Ferretería General" ? "selected":"")>Ferretería General</option>
+                        <option value="Herramientas Manuales" @(Model.categoria=="Herramientas Manuales" ? "selected":"")>Herramientas Manuales</option>
+                        <option value="Eléctricos" @(Model.categoria=="Eléctricos" ? "selected":"")>Eléctricos</option>
+                        <option value="Plomería" @(Model.categoria=="Plomería" ? "selected":"")>Plomería</option>
+                        <option value="Pinturas" @(Model.categoria=="Pinturas" ? "selected":"")>Pinturas</option>
+                        <option value="Seguridad" @(Model.categoria=="Seguridad" ? "selected":"")>Seguridad</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.categoria, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.stock)
+                    @Html.EditorFor(model => model.stock, new { htmlAttributes = new { @class = "form-control form-ferreteria", type="number", min="0" } })
+                    @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.estado)
+                    @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
+                    @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item">
+                    @Html.LabelFor(model => model.fecha_creacion)
+                    @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control form-ferreteria", type="date" } })
+                    @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-item mt-4 text-end">
                     <input type="submit" value="Guardar cambios" class="btn btn-ferreteria" />
                 </div>
 
-            </form>
+            </div>
 
         </div>
+
     </div>
 }
 
