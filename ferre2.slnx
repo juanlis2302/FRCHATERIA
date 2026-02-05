@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Elementos de la solución/">
+    <File Path="Jenkinsfile" />
+  </Folder>
   <Project Path="../Prueba2/Prueba2.csproj" Id="a8f26340-5cbc-4cfa-a419-8795c5d5d093" />
   <Project Path="ferre2.csproj" Id="e838444f-019e-4724-b0c8-f9cde0daae73" />
 </Solution>

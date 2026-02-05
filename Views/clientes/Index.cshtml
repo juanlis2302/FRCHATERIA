@@ -1,113 +1,66 @@
 ﻿@model IEnumerable<ferre2.Models.clientes>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Clientes";
 }
-@{
-    ViewBag.Title = "Index";
-}
+
 <div class="main-container">
 
-    <div class="table-card">
+    <div class="productos-wrapper">
 
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Clientes</h2>
-            </div>
+        <!-- HEADER -->
+        <div class="productos-header-nuevo">
+            <h2 class="header-title">Clientes</h2>
+
             @Html.ActionLink(
-         "➕ Nuevo Cliente",
-         "Create",
-         null,
-         new { @class = "btn btn-ferreteria mb-3" }
-     )
+                "➕ Nuevo Cliente",
+                "Create",
+                null,
+                new { @class = "btn btn-ferreteria" }
+            )
         </div>
-        <div class="table-wrapper">
-            <table class="table table-hover table-ferreteria">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.id_cliente)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.nombre_razon_social)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tipo_documento)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.numero_documento)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.direccion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.telefono)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.email)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ciudad)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.departamento)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.fecha_registro)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.estado)
-                        </th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.id_cliente)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre_razon_social)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.tipo_documento)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.numero_documento)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.direccion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.telefono)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ciudad)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.departamento)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fecha_registro)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.estado, new { @class = "badge bg-success" })
-                            </td>
-                            <td>
-                                @Html.ActionLink("✏️", "Edit", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-ferreteria" })
-                                @Html.ActionLink("👁️", "Details", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-outline-secondary" })
-                                @Html.ActionLink("🗑️", "Delete", new { id = item.id_cliente }, new { @class = "btn btn-sm btn-danger" })
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <!-- GRID DE CLIENTES -->
+        <div class="productos-grid-nuevo">
+
+            @foreach (var item in Model)
+            {
+                <div class="card-producto-nuevo">
+
+                    <h3>@item.nombre_razon_social</h3>
+
+                    <div class="producto-info-nuevo">
+                        <div><label>ID:</label> @item.id_cliente</div>
+                        <div><label>Tipo Doc:</label> @item.tipo_documento</div>
+                        <div><label>Número Doc:</label> @item.numero_documento</div>
+                        <div><label>Dirección:</label> @item.direccion</div>
+                        <div><label>Teléfono:</label> @item.telefono</div>
+                        <div><label>Email:</label> @item.email</div>
+                        <div><label>Ciudad:</label> @item.ciudad</div>
+                        <div><label>Departamento:</label> @item.departamento</div>
+                        <div><label>Registro:</label> @item.fecha_registro</div>
+                        <div>
+                            <label>Estado:</label>
+                            <span class="badge bg-success">@item.estado</span>
+                        </div>
+                    </div>
+
+                    <div class="card-buttons-nuevo">
+                        <a href="@Url.Action("Edit", new { id = item.id_cliente })"
+                           class="btn btn-ferreteria btn-edit-nuevo">✏️ Editar</a>
+
+                        <a href="@Url.Action("Details", new { id = item.id_cliente })"
+                           class="btn btn-outline-ferreteria btn-view-nuevo">👁️ Ver</a>
+
+                        <a href="@Url.Action("Delete", new { id = item.id_cliente })"
+                           class="btn btn-danger btn-delete-nuevo">🗑️ Eliminar</a>
+                    </div>
+
+                </div>
+            }
 
         </div>
 
     </div>
+
+</div>
