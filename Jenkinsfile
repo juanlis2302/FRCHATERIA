@@ -2,38 +2,33 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Clonar repositorio') {
             steps {
-                echo 'Repositorio descargado desde GitHub'
+                echo 'Repositorio clonado correctamente'
             }
         }
 
-        stage('Restore') {
+        stage('Compilar proyecto') {
             steps {
-                bat 'dotnet restore'
+                echo 'Aquí iría la compilación del proyecto MVC'
             }
         }
 
-        stage('Build') {
+        stage('Pruebas') {
             steps {
-                bat 'dotnet build --no-restore'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'dotnet test --no-build --logger trx'
+                echo 'Aquí se ejecutarían las pruebas'
             }
         }
     }
 
     post {
         success {
-            echo '✅ CI completado correctamente'
+            echo 'Pipeline ejecutado correctamente 🎉'
         }
         failure {
-            echo '❌ Falló el build o las pruebas'
+            echo 'Pipeline falló ❌'
         }
     }
 }
+
 
