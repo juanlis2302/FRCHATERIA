@@ -2,33 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('Clonar repositorio') {
+        stage('Restaurar dependencias') {
             steps {
-                echo 'Repositorio clonado correctamente'
+                bat 'dotnet restore'
             }
         }
 
-        stage('Compilar proyecto') {
+        stage('Compilar solución') {
             steps {
-                echo 'Aquí iría la compilación del proyecto MVC'
+                bat 'dotnet build --configuration Release'
             }
         }
 
-        stage('Pruebas') {
+        stage('Ejecutar pruebas xUnit') {
             steps {
-                echo 'Aquí se ejecutarían las pruebas'
+                bat 'dotnet test --configuration Release --logger "trx;LogFileName=test_results.trx"'
             }
         }
     }
 
     post {
+        always {
+            echo 'Pipeline finalizado'
+        }
         success {
-            echo 'Pipeline ejecutado correctamente 🎉'
+            echo '✅ Pruebas xUnit ejecutadas correctamente'
         }
         failure {
-            echo 'Pipeline falló ❌'
+            echo '❌ Fallaron pruebas'
         }
     }
 }
-
 
