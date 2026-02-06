@@ -4,63 +4,56 @@
     ViewBag.Title = "Clientes";
 }
 
-<div class="main-container">
-
-    <div class="productos-wrapper">
-
-        <!-- HEADER -->
-        <div class="productos-header-nuevo">
-            <h2 class="header-title">Clientes</h2>
-
-            @Html.ActionLink(
-                "➕ Nuevo Cliente",
-                "Create",
-                null,
-                new { @class = "btn btn-ferreteria" }
-            )
-        </div>
-
-        <!-- GRID DE CLIENTES -->
-        <div class="productos-grid-nuevo">
-
-            @foreach (var item in Model)
-            {
-                <div class="card-producto-nuevo">
-
-                    <h3>@item.nombre_razon_social</h3>
-
-                    <div class="producto-info-nuevo">
-                        <div><label>ID:</label> @item.id_cliente</div>
-                        <div><label>Tipo Doc:</label> @item.tipo_documento</div>
-                        <div><label>Número Doc:</label> @item.numero_documento</div>
-                        <div><label>Dirección:</label> @item.direccion</div>
-                        <div><label>Teléfono:</label> @item.telefono</div>
-                        <div><label>Email:</label> @item.email</div>
-                        <div><label>Ciudad:</label> @item.ciudad</div>
-                        <div><label>Departamento:</label> @item.departamento</div>
-                        <div><label>Registro:</label> @item.fecha_registro</div>
-                        <div>
-                            <label>Estado:</label>
-                            <span class="badge bg-success">@item.estado</span>
-                        </div>
-                    </div>
-
-                    <div class="card-buttons-nuevo">
-                        <a href="@Url.Action("Edit", new { id = item.id_cliente })"
-                           class="btn btn-ferreteria btn-edit-nuevo">✏️ Editar</a>
-
-                        <a href="@Url.Action("Details", new { id = item.id_cliente })"
-                           class="btn btn-outline-ferreteria btn-view-nuevo">👁️ Ver</a>
-
-                        <a href="@Url.Action("Delete", new { id = item.id_cliente })"
-                           class="btn btn-danger btn-delete-nuevo">🗑️ Eliminar</a>
-                    </div>
-
-                </div>
-            }
-
-        </div>
-
+<div class="productos-header-nuevo">
+    <div class="header-title">
+        <h2>Clientes</h2>
     </div>
 
+    @Html.ActionLink(
+             "+ Nuevo Cliente",
+             "Create",
+             null,
+             new { @class = "btn-ferreteria", @style = "background-color: #f39c12; color: #1a365d; font-weight: bold; border-radius: 10px; padding: 10px 20px; text-decoration: none;" }
+         )
+</div>
+
+<div class="productos-grid-nuevo">
+    @foreach (var item in Model)
+    {
+        <div class="card-producto-nuevo player-card">
+            <div class="player-header">
+                <div class="player-avatar">
+                    <span style="z-index: 2;">@item.nombre_razon_social.Substring(0, 1).ToUpper()</span>
+
+                    <div class="player-level">LVL @item.id_cliente</div>
+                </div>
+                <h3>@item.nombre_razon_social</h3>
+                <span class="badge @(item.estado == "Activo" ? "bg-success" : "bg-danger")">@item.estado</span>
+            </div>
+
+            <div class="producto-info-nuevo player-stats">
+                <div class="stat-row">
+                    <span class="stat-label">📜 DOC:</span>
+                    <span class="stat-value">@item.tipo_documento @item.numero_documento</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📍 UBICACIÓN:</span>
+                    <span class="stat-value">@item.ciudad, @item.departamento</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📞 CONTACTO:</span>
+                    <span class="stat-value">@item.telefono</span>
+                </div>
+                <div class="stat-row email-stat">
+                    <span class="stat-value">@item.email</span>
+                </div>
+            </div>
+
+            <div class="card-buttons-nuevo">
+                <a href="@Url.Action("Edit", new { id = item.id_cliente })" class="btn-action edit">✏️</a>
+                <a href="@Url.Action("Details", new { id = item.id_cliente })" class="btn-action view">👁️</a>
+                <a href="@Url.Action("Delete", new { id = item.id_cliente })" class="btn-action delete">🗑️</a>
+            </div>
+        </div>
+    }
 </div>

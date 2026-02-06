@@ -1,0 +1,724 @@
+﻿:root {
+    --primary: #1f3a5f;
+    --secondary: #f39c12;
+    --dark: #2c2c2c;
+    --light: #f4f6f8;
+    --white: #ffffff;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    background-image: url('Img/fondoferre.jpg');
+    position: relative;
+    color: var(--dark);
+    font-family: Tahoma, sans-serif;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.35); /* oscuro elegante */
+        z-index: -1;
+        inset: 0;
+    }
+
+
+
+
+
+/* ==============================
+   NAVBAR GLASS PROFESIONAL
+============================== */
+.nav-ferreteria {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    padding: 1rem 2rem;
+}
+
+    /* Flexbox correcto */
+    .nav-ferreteria .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    /* Marca */
+    .nav-ferreteria .navbar-brand {
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.8rem;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+        .nav-ferreteria .navbar-brand:hover {
+            color: var(--secondary);
+        }
+
+/* Nav links */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(255,255,255,0.2);
+        color: var(--secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    /* Franja lateral amarilla */
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--secondary);
+        border-radius: 2px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+        opacity: 1;
+    }
+
+/* Botón hamburguesa */
+.navbar-toggler {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.12);
+    padding: 0.3rem 0.6rem;
+}
+
+    .navbar-toggler:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+/* Login */
+.login-partial .btn {
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+}
+
+/* Responsive: nav apilada */
+@media (max-width: 992px) {
+    .navbar-collapse {
+        width: 100%;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+
+
+
+/* ==============================
+   CONTENEDOR PRINCIPAL
+============================== */
+
+.main-container {
+    background-color: var(--white);
+    padding: 35px;
+    margin: 40px auto;
+    border-radius: 16px;
+    border-top: 20px solid var(--secondary);
+    width: 95%;
+    max-width: 1400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+}
+/* ==============================
+   HEADER PRO (FIXED)
+============================== */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    background: var(--white);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+/* contenedor del título */
+.header-title {
+    display: flex;
+    flex-direction: column;
+}
+
+/* título */
+.section-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+    /* línea amarilla */
+    .section-header h2::after {
+        content: "";
+        display: block;
+        width: 55px;
+        height: 3px;
+        background: var(--secondary);
+        margin-top: 6px;
+        border-radius: 4px;
+    }
+
+
+/* ===== TITULO ===== */
+
+.section-header h1,
+.section-header h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--primary);
+    position: relative;
+}
+
+
+    /* ===== LINEA AMARILLA ===== */
+
+    .section-header h1::after,
+    .section-header h2::after {
+        content: "";
+        display: block;
+        width: 55px;
+        height: 3px;
+        margin-top: 6px;
+        background: var(--secondary);
+        border-radius: 4px;
+    }
+
+
+/* ===== BOTÓN HEADER ===== */
+
+.section-header .btn-ferreteria {
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all .25s ease;
+}
+
+    .section-header .btn-ferreteria:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+/* ==============================
+   TABLA FERRETERÍA (CARD PRO)
+============================== */
+
+.table-ferreteria {
+    background: var(--white);
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.08);
+    transition: transform .2s ease;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-ferreteria:hover {
+    transform: translateY(-2px);
+}
+/* ===== HEADER TABLA ===== */
+
+.table-ferreteria thead {
+    background: linear-gradient( 90deg, var(--primary), #2c4f80 );
+    color: var(--white);
+    text-align: center;
+}
+
+
+/* ===== CELDAS ===== */
+
+.table-ferreteria th,
+.table-ferreteria td {
+    padding: 14px 12px;
+    vertical-align: middle;
+}
+
+
+/* ===== FILAS ===== */
+
+.table-ferreteria tbody tr {
+    transition: all .15s ease;
+}
+
+    .table-ferreteria tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+
+/* ===== BOTONES ACCIONES ===== */
+
+.table-ferreteria td .btn {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 0;
+}
+
+
+
+/* ==============================
+   BOTONES GENERALES
+============================== */
+
+.btn-ferreteria {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    letter-spacing: .3px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+    .btn-ferreteria:hover {
+        background-color: #d68910;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+
+.btn-outline-ferreteria {
+    border: 2px solid var(--dark);
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+    .btn-outline-ferreteria:hover {
+        background-color: var(--secondary);
+        color: var(--dark);
+    }
+/* FORM estilo ferretería */
+.form-ferreteria label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.form-ferreteria .form-control {
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    transition: .2s;
+}
+
+    .form-ferreteria .form-control:focus {
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 3px rgba(255,193,7,.25);
+    }
+
+/* SECCION DE DETALLES */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Cada detalle como fila */
+.detalle-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: var(--light);
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+    .detalle-item:hover {
+        background: #f9f9f9;
+        transform: translateY(-1px);
+    }
+
+/* Label del detalle */
+.detalle-label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Valor del detalle */
+.detalle-value {
+    color: var(--dark);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Wrapper del segmento de productos */
+.productos-wrapper {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 1400px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Header con fondo blanco */
+.productos-header-nuevo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+    .productos-header-nuevo h2 {
+        font-size: 28px;
+        color: var(--primary);
+        margin: 0;
+        position: relative;
+    }
+
+        .productos-header-nuevo h2::after {
+            content: "";
+            display: block;
+            width: 55px;
+            height: 3px;
+            background: var(--secondary);
+            margin-top: 6px;
+            border-radius: 4px;
+        }
+
+/* Botón Agregar Nuevo Producto */
+.btn-agregar-producto {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    background: var(--secondary);
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+    .btn-agregar-producto:hover {
+        background-color: #28a745;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+/* Grilla de productos - exacto 3x3 */
+.productos-grid-nuevo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas fijas */
+    gap: 25px;
+}
+
+@media (max-width: 992px) {
+    .productos-grid-nuevo {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+    }
+}
+
+@media (max-width: 600px) {
+    .productos-grid-nuevo {
+        grid-template-columns: 1fr; /* 1 columna en móvil */
+    }
+}
+
+/* Card de producto */
+.card-producto-nuevo {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .card-producto-nuevo:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 35px rgba(0,0,0,0.25);
+    }
+
+    /* Título con línea amarilla */
+    .card-producto-nuevo h3 {
+        font-size: 20px;
+        color: var(--primary);
+        margin-bottom: 12px;
+        position: relative;
+    }
+
+        .card-producto-nuevo h3::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            margin-top: 6px;
+            border-radius: 4px;
+        }
+
+/* Información interna */
+.producto-info-nuevo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+    .producto-info-nuevo span {
+        font-size: 14px;
+        color: var(--dark);
+    }
+
+        .producto-info-nuevo span label {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-right: 5px;
+        }
+
+/* Botones internos: distribuidos con espacio */
+.card-buttons-nuevo {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+    /* Botones uniformes */
+    .card-buttons-nuevo .btn-producto-accion {
+        flex: 1;
+        padding: 8px 0;
+        border-radius: 8px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.25s ease;
+        color: white;
+    }
+/* Editar - amarillo */
+.btn-edit-nuevo {
+    background-color: var(--secondary);
+}
+
+    .btn-edit-nuevo:hover {
+        background-color: #d68910;
+    }
+
+/* Ver - azul */
+.btn-view-nuevo {
+    background-color: #1f3a5f;
+}
+
+    .btn-view-nuevo:hover {
+        background-color: #16325b;
+    }
+
+/* Eliminar - rojo */
+.btn-delete-nuevo {
+    background-color: #dc3545;
+}
+
+    .btn-delete-nuevo:hover {
+        background-color: #b52b3a;
+    }
+
+
+
+/* =====================================
+   WRAPPER GENERAL DEL FORMULARIO
+===================================== */
+.productos-wrapper {
+    background: rgba(255,255,255,0.10); /* vidrio suave */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+
+/* =====================================
+   HEADER BLANCO CON LÍNEA AMARILLA
+===================================== */
+.productos-header-nuevo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 18px 25px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+    .productos-header-nuevo .header-title h2 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--primary);
+        position: relative;
+    }
+
+        .productos-header-nuevo .header-title h2::after {
+            content: "";
+            display: block;
+            width: 55px;
+            height: 3px;
+            margin-top: 6px;
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+
+    /* BOTÓN VOLVER */
+    .productos-header-nuevo .btn-outline-ferreteria {
+        text-decoration: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+    }
+
+/* =====================================
+   TARJETA DEL FORMULARIO
+===================================== */
+.card-producto-nuevo {
+    background: rgba(255,255,255,0.75); /* vidrio más sólido para el formulario */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 16px;
+    border-left: 8px solid var(--secondary);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+    /* =====================================
+   CAMPOS DEL FORMULARIO
+===================================== */
+    .card-producto-nuevo .form-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .card-producto-nuevo label {
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .card-producto-nuevo .form-control {
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        padding: 10px 14px;
+        transition: .2s;
+    }
+
+        .card-producto-nuevo .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(243,156,18,.25);
+        }
+
+    /* =====================================
+   BOTÓN CREAR
+===================================== */
+    .card-producto-nuevo .btn-ferreteria {
+        align-self: flex-start;
+        padding: 10px 22px;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: all .25s ease;
+    }
+
+        .card-producto-nuevo .btn-ferreteria:hover {
+            background-color: #167958; /* verde llamativo */
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,.25);
+        }
+
+    /* =====================================
+   MENSAJES DE ERROR
+===================================== */
+    .card-producto-nuevo .text-danger {
+        font-size: 13px;
+        color: #d9534f;
+    }
+    /* =====================================
+   SELECT ESTILIZADO
+===================================== */
+    .card-producto-nuevo select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: #fff;
+        cursor: pointer;
+    }

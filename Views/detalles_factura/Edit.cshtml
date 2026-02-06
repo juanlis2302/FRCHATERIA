@@ -1,105 +1,95 @@
-﻿@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="main-container">
+﻿@model ferre2.Models.detalles_factura
 
-        <!-- CARD -->
-        <div class="table-card">
+@{
+    ViewBag.Title = "Editar Detalle";
+}
 
-            <!-- HEADER ESTILO FERRETERÍA -->
-            <div class="section-header">
-                <div class="header-title">
-                    <h2>Detalles Factura</h2>
+<div class="productos-wrapper" style="max-width: 850px; margin: auto;">
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2>Editar Detalle de Factura</h2>
+        </div>
+        @Html.ActionLink("← Volver", "Index", null, new { @class = "btn-outline-ferreteria", @style = "text-decoration:none;" })
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id_detalle)
+
+        <div class="card-producto-nuevo" style="padding: 30px; display: flex; flex-direction: column; gap: 20px;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @* Fila 1: Factura y Producto *@
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+                <div class="form-item">
+                    <label>Factura N°</label>
+                    @Html.DropDownList("id_factura", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_factura, "", new { @class = "text-danger" })
                 </div>
-                @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-ferreteria" })
+                <div class="form-item">
+                    <label>Producto</label>
+                    @Html.DropDownList("id_producto", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_producto, "", new { @class = "text-danger" })
+                </div>
             </div>
 
-            <!-- FORMULARIO -->
-            <form class="p-4 form-ferreteria">
+            @* Fila 2: Descripción completa *@
+            <div class="form-item">
+                <label>Descripción del Artículo</label>
+                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
 
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.id_detalle)
-
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.id_factura)
-                        @Html.DropDownList("id_factura", null, htmlAttributes: new { @class = "form-control form-ferreteria" })
-                        @Html.ValidationMessageFor(model => model.id_factura, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.id_producto)
-                        @Html.DropDownList("id_producto", null, htmlAttributes: new { @class = "form-control form-ferreteria" })
-                        @Html.ValidationMessageFor(model => model.id_producto, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.descripcion)
-                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.cantidad)
-                        @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.precio_unitario)
-                        @Html.EditorFor(model => model.precio_unitario, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.precio_unitario, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.descuento_porcentaje)
-                        @Html.EditorFor(model => model.descuento_porcentaje, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.descuento_porcentaje, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.descuento_valor)
-                        @Html.EditorFor(model => model.descuento_valor, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.descuento_valor, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.iva_porcentaje)
-                        @Html.EditorFor(model => model.iva_porcentaje, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.iva_porcentaje, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.iva_valor)
-                        @Html.EditorFor(model => model.iva_valor, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.iva_valor, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.subtotal)
-                        @Html.EditorFor(model => model.subtotal, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.subtotal, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6">
-                        @Html.LabelFor(model => model.total_linea)
-                        @Html.EditorFor(model => model.total_linea, new { htmlAttributes = new { @class = "form-control form-ferreteria" } })
-                        @Html.ValidationMessageFor(model => model.total_linea, "", new { @class = "text-danger" })
-                    </div>
-
+            @* Fila 3: Cantidad, Precio y Subtotal *@
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                <div class="form-item">
+                    <label>Cantidad</label>
+                    @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
-
-                <div class="text-end mt-4">
-                    <input type="submit" value="Guardar cambios" class="btn btn-ferreteria" />
+                <div class="form-item">
+                    <label>Precio Unitario</label>
+                    @Html.EditorFor(model => model.precio_unitario, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
+                <div class="form-item">
+                    <label>Subtotal Base</label>
+                    @Html.EditorFor(model => model.subtotal, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
 
-            </form>
+            @* Fila 4: Descuentos e Impuestos (4 columnas para que quepan bien) *@
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px;">
+                <div class="form-item">
+                    <label>Dto %</label>
+                    @Html.EditorFor(model => model.descuento_porcentaje, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-item">
+                    <label>Dto Valor</label>
+                    @Html.EditorFor(model => model.descuento_valor, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-item">
+                    <label>IVA %</label>
+                    @Html.EditorFor(model => model.iva_porcentaje, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-item">
+                    <label>IVA Valor</label>
+                    @Html.EditorFor(model => model.iva_valor, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
 
+            @* Fila 5: Resultado Final *@
+            <div class="form-item">
+                <label>Total de Línea</label>
+                @Html.EditorFor(model => model.total_linea, new { htmlAttributes = new { @class = "form-control", @style = "border: 1px solid #e67e22; font-weight: bold;" } })
+                @Html.ValidationMessageFor(model => model.total_linea, "", new { @class = "text-danger" })
+            </div>
+
+            <div style="margin-top: 20px; text-align: right;">
+                <input type="submit" value="💾 Guardar Cambios" class="btn-ferreteria" style="width: 100%; padding: 12px; cursor: pointer;" />
+            </div>
         </div>
-    </div>
-}
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,47 +1,62 @@
 ﻿@model IEnumerable<ferre2.Models.productos>
 
-<div class="productos-wrapper">
-
-    <!-- HEADER -->
-    <div class="productos-header-nuevo">
-        <h2>Productos</h2>
-        @Html.ActionLink(
-                 "➕ Nuevo Producto",
-                 "Create",
-                 null,
-                 new { @class = "btn btn-ferreteria btn-agregar-producto" }
-             )
-    </div>
-
-    <!-- GRID DE PRODUCTOS -->
-    <div class="productos-grid-nuevo">
-        @foreach (var item in Model)
-        {
-            <div class="card-producto-nuevo">
-
-                <!-- Nombre del producto -->
-                <h3>@item.nombre</h3>
-
-                <!-- Información del producto -->
-                <div class="producto-info-nuevo">
-                    <span><label>Código:</label> @item.codigo</span>
-                    <span><label>Descripción:</label> @item.descripcion</span>
-                    <span><label>Precio:</label> @item.precio_base</span>
-                    <span><label>IVA:</label> @item.iva_porcentaje%</span>
-                    <span><label>Stock:</label> @item.stock</span>
-                    <span><label>Estado:</label> @item.estado</span>
-                    <span><label>Categoría:</label> @item.categoria</span>
-                </div>
-
-                <!-- Botones -->
-                <div class="card-buttons-nuevo">
-                    <a href="@Url.Action("Edit", new { id = item.id_producto })" class="btn btn-producto-accion btn-edit-nuevo">✏️ Editar</a>
-                    <a href="@Url.Action("Details", new { id = item.id_producto })" class="btn btn-producto-accion btn-view-nuevo">👁️ Ver</a>
-                    <a href="@Url.Action("Delete", new { id = item.id_producto })" class="btn btn-producto-accion btn-delete-nuevo">🗑️ Eliminar</a>
-                </div>
-
+    <div class="productos-wrapper">
+        <div class="productos-header-nuevo">
+            <div class="header-title">
+                <h2>Inventario de Productos</h2>
             </div>
-        }
-    </div>
+            @Html.ActionLink(
+                   "+ Nuevo Producto",
+                   "Create",
+                   null,
+                   new { @class = "btn-ferreteria", @style = "background-color: #f39c12; color: #1a365d; font-weight: bold; border-radius: 10px; padding: 10px 20px; text-decoration: none;" }
+               )
+        </div>
 
+        <div class="productos-grid-nuevo">
+            @foreach (var item in Model)
+            {
+                <div class="card-producto-nuevo">
+                    <div style="border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-bottom: 10px;">
+                        <h3 style="margin:0; color:#1a365d; font-size: 1.25rem; font-weight: 700;">@item.nombre</h3>
+                        <small style="color:#888; font-weight: 600;">Ref: @item.codigo</small>
+                    </div>
+
+                    <div class="producto-info-nuevo">
+                        <span>
+                            <label>Precio:</label>
+                            <b class="badge-precio">$@item.precio_base</b>
+                        </span>
+                        <span>
+                            <label>Categoría:</label>
+                            <span style="color:#555;">@item.categoria</span>
+                        </span>
+                        <span>
+                            <label>Existencias:</label>
+                            @if (item.stock <= 5)
+                            {
+                                <span class="badge-stock stock-low">⚠️ @item.stock Unid.</span>
+                            }
+                            else
+                            {
+                                <span class="badge-stock stock-ok">✅ @item.stock Unid.</span>
+                            }
+                        </span>
+                    </div>
+
+                    <div class="card-buttons-nuevo">
+                        <a href="@Url.Action("Edit", new { id = item.id_producto })" class="btn-circular btn-edit-circ" title="Editar Producto">
+                            ✏️
+                        </a>
+                        <a href="@Url.Action("Details", new { id = item.id_producto })" class="btn-circular btn-view-circ" title="Ver Detalles">
+                            👁️
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.id_producto })" class="btn-circular btn-delete-circ" title="Eliminar del Sistema">
+                            🗑️
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

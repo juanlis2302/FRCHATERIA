@@ -1,93 +1,68 @@
 ﻿@model ferre2.Models.detalles_factura
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Detalle";
 }
 
-<div class="main-container">
+<div class="productos-wrapper" style="max-width: 850px; margin: auto;">
+    @* HEADER IGUAL AL DE EDITAR *@
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2 style="color: #c0392b;">¿Eliminar este Detalle?</h2>
+        </div>
+        @Html.ActionLink("← Volver", "Index", null, new { @class = "btn-outline-ferreteria", @style = "text-decoration:none;" })
+    </div>
 
-    <div class="table-card">
+    <div class="card-producto-nuevo" style="padding: 30px; display: flex; flex-direction: column; gap: 20px;">
 
-        <!-- HEADER -->
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Eliminar Detalle de Factura</h2>
+        @* SECCIÓN DE INFORMACIÓN ORGANIZADA EN GRID *@
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <div class="detalle-info">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; font-size: 0.9em;">Factura N°</label>
+                <span style="font-size: 1.1em;">@Html.DisplayFor(model => model.facturas.numero_factura)</span>
             </div>
-            <div>
-                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
+            <div class="detalle-info">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; font-size: 0.9em;">Producto / Código</label>
+                <span style="font-size: 1.1em;">@Html.DisplayFor(model => model.productos.codigo)</span>
             </div>
         </div>
 
-        <!-- DETALLES -->
-        <div class="card-content p-4">
-
-            <div class="detalle-item">
-                <span class="detalle-label">Descripción:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.descripcion)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Cantidad:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.cantidad)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Precio Unitario:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.precio_unitario)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Descuento %:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.descuento_porcentaje)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Descuento Valor:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.descuento_valor)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">IVA %:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.iva_porcentaje)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">IVA Valor:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.iva_valor)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Subtotal:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.subtotal)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total Línea:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.total_linea)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Factura:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.facturas.numero_factura)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Producto:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.productos.codigo)</span>
-            </div>
-
+        <div class="form-item">
+            <label style="display:block; font-weight:bold; color:#7f8c8d; font-size: 0.9em;">Descripción</label>
+            <p style="background: #f9f9f9; padding: 10px; border-radius: 5px;">@Html.DisplayFor(model => model.descripcion)</p>
         </div>
 
-        <!-- ACCIONES -->
-        <div class="card-actions p-4">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+            <div class="detalle-info">
+                <label style="display:block; font-weight:bold; color:#7f8c8d;">Cantidad</label>
+                <span>@Html.DisplayFor(model => model.cantidad)</span>
+            </div>
+            <div class="detalle-info">
+                <label style="display:block; font-weight:bold; color:#7f8c8d;">Precio Unit.</label>
+                <span>@Html.DisplayFor(model => model.precio_unitario)</span>
+            </div>
+            <div class="detalle-info">
+                <label style="display:block; font-weight:bold; color:#7f8c8d;">Subtotal</label>
+                <span>@Html.DisplayFor(model => model.subtotal)</span>
+            </div>
+        </div>
+
+        @* TOTAL RESALTADO *@
+        <div style="background-color: #fef9e7; border: 1px solid #e67e22; padding: 15px; border-radius: 8px; text-align: center;">
+            <label style="display:block; font-weight:bold; color:#d35400;">TOTAL DE ESTA LÍNEA</label>
+            <span style="font-size: 1.5em; font-weight: bold; color: #2c3e50;">@Html.DisplayFor(model => model.total_linea)</span>
+        </div>
+
+        @* ACCIÓN DE ELIMINAR *@
+        <div style="margin-top: 20px;">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                <input type="submit" value="Eliminar" class="btn btn-danger" />
-                <a href="Index" class="btn btn-outline-ferreteria">Cancelar</a>
+                <div style="display: flex; gap: 15px;">
+                    <input type="submit" value="🗑️ Confirmar Eliminación" class="btn-ferreteria" style="background-color: #c0392b; flex: 2; padding: 12px; cursor: pointer;" />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn-outline-ferreteria", @style = "flex: 1; text-align: center; text-decoration: none; padding-top: 10px;" })
+                </div>
             }
         </div>
-
     </div>
-
 </div>

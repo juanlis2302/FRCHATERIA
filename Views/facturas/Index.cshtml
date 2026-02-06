@@ -4,61 +4,76 @@
     ViewBag.Title = "Facturas";
 }
 
-<div class="main-container">
+@* Asegúrate de que este div coincida con el de Productos *@
+<div class="productos-wrapper">
 
-    <div class="productos-wrapper">
-
-        <!-- HEADER -->
-        <div class="productos-header-nuevo">
-            <h2 class="header-title">Facturas</h2>
-
-            <div>
-                @Html.ActionLink("➕ Crear Nueva Factura", "Create", null, new { @class = "btn btn-ferreteria" })
-                @Html.ActionLink("📄 Detalle Factura", "Index", "detalles_factura", null, new { @class = "btn btn-ferreteria" })
-            </div>
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2>📑 Gestión de Facturas</h2>
         </div>
-
-        <!-- GRID DE FACTURAS -->
-        <div class="productos-grid-nuevo">
-
-            @foreach (var item in Model)
-            {
-                <div class="card-producto-nuevo">
-
-                    <h3>@item.numero_factura</h3>
-
-                    <div class="producto-info-nuevo">
-                        <div><label>Cliente:</label> @item.clientes.nombre_razon_social</div>
-                        <div><label>Emisión:</label> @item.fecha_emision</div>
-                        <div><label>Vence:</label> @item.fecha_vencimiento</div>
-                        <div><label>Subtotal:</label> @item.subtotal</div>
-                        <div><label>Impuestos:</label> @item.total_impuestos</div>
-                        <div><label>Descuentos:</label> @item.total_descuentos</div>
-                        <div><label>Total:</label> <strong>@item.total</strong></div>
-                        <div>
-                            <label>Estado:</label>
-                            <span class="badge bg-success">@item.estado</span>
-                        </div>
-                        <div><label>Método pago:</label> @item.metodo_pago</div>
-                    </div>
-
-                    <div class="card-buttons-nuevo">
-                        <a href="@Url.Action("Edit", new { id = item.id_factura })"
-                           class="btn btn-ferreteria btn-edit-nuevo">✏️ Editar</a>
-
-                        <a href="@Url.Action("Details", new { id = item.id_factura })"
-                           class="btn btn-outline-ferreteria btn-view-nuevo">👁️ Ver</a>
-
-                        <a href="@Url.Action("Delete", new { id = item.id_factura })"
-                           class="btn btn-danger btn-delete-nuevo">🗑️ Eliminar</a>
-                    </div>
-
-                </div>
-            }
-
+        <div class="header-actions">
+            @Html.ActionLink("➕ Nueva Factura", "Create", null, new { @class = "btn-ferreteria", @style = "text-decoration:none;" })
+            @Html.ActionLink("📄 Detalles", "Index", "detalles_factura", null, new { @class = "btn-outline-ferreteria", @style = "text-decoration:none; margin-left:10px;" })
         </div>
-
     </div>
 
+    <div class="productos-grid-nuevo">
+
+        @foreach (var item in Model)
+        {
+            <div class="card-producto-nuevo">
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin:0; color: #2c3e50;">#@item.numero_factura</h3>
+                    <span class="badge-ferreteria" style="background-color: @(item.estado == "Pagada" ? "#27ae60" : "#f39c12"); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">
+                        @item.estado
+                    </span>
+                </div>
+
+                <div class="producto-info-nuevo">
+                    <div class="detalle-linea">
+                        <label>👤 Cliente:</label>
+                        <span>@item.clientes.nombre_razon_social</span>
+                    </div>
+
+                    <div class="detalle-linea">
+                        <label>📅 Emisión:</label>
+                        <span>@item.fecha_emision.ToShortDateString()</span>
+                    </div>
+
+                    <div class="total-container-stack">
+                        <label class="total-label">💰 Total Factura</label>
+                        <div class="total-amount-group">
+                            <span class="currency-symbol">$</span>
+                            <span class="main-amount">@item.total.ToString("N2")</span>
+                        </div>
+                    </div>
+
+                    <div class="detalle-linea">
+                        <label>💳 Pago:</label>
+                        <span>@item.metodo_pago</span>
+                    </div>
+                </div>
+
+                <div class="card-buttons-nuevo">
+                    <a href="@Url.Action("Edit", new { id = item.id_factura })"
+                       class="btn-action edit" title="Editar Registro">
+                        ✏️
+                    </a>
+
+                    <a href="@Url.Action("Details", new { id = item.id_factura })"
+                       class="btn-action view" title="Ver Detalles">
+                        👁️
+                    </a>
+
+                    <a href="@Url.Action("Delete", new { id = item.id_factura })"
+                       class="btn-action delete" title="Eliminar Factura">
+                        🗑️
+                    </a>
+                </div>
+
+            </div>
+        }
+    </div>
 </div>
 

@@ -1,113 +1,101 @@
 ﻿@model ferre2.Models.productos
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nuevo Producto";
 }
 
-<div class="productos-wrapper">
+<div class="productos-wrapper" style="max-width: 900px;">
 
-    <!-- HEADER -->
     <div class="productos-header-nuevo">
         <div class="header-title">
-            <h2>Crear Producto</h2>
+            <h2>✨ Registro de Nuevo Producto</h2>
         </div>
         <div>
-            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-ferreteria" })
+            @Html.ActionLink("← Volver al Listado", "Index", null, new { @class = "btn-outline-ferreteria", @style = "text-decoration:none;" })
         </div>
     </div>
 
-    <!-- FORMULARIO -->
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="card-producto-nuevo">
+        <div class="card-producto-nuevo" style="padding: 30px;">
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-grid-layout">
 
-            <!-- CÓDIGO -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.codigo)
-                @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+                <div class="form-section">
+                    <h4 class="section-subtitle">📦 Información General</h4>
+
+                    <div class="form-group-custom">
+                        @Html.LabelFor(model => model.codigo, "Código de Referencia")
+                        @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-input", placeholder = "Ej: HER-001" } })
+                        @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group-custom">
+                        @Html.LabelFor(model => model.nombre, "Nombre del Producto")
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-input", placeholder = "Nombre comercial" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group-custom">
+                        @Html.LabelFor(model => model.categoria, "Categoría")
+                        <select id="categoria" name="categoria" class="form-input">
+                            <option value="">-- Seleccione categoría --</option>
+                            <option value="Tornilleria">Tornillería</option>
+                            <option value="HerramientasManual">Herramientas Manuales</option>
+                            <option value="HerramientasElectrica">Herramientas Eléctricas</option>
+                            <option value="PinturasBarnices">Pinturas y Barnices</option>
+                            <option value="MaterialesConstruccion">Materiales de Construcción</option>
+                            <option value="Electricidad">Electricidad</option>
+                            <option value="Plomeria">Plomería</option>
+                            <option value="Jardineria">Jardinería</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="section-subtitle">💰 Valores e Inventario</h4>
+
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group-custom" style="flex: 2;">
+                            @Html.LabelFor(model => model.precio_base, "Precio Base ($)")
+                            @Html.EditorFor(model => model.precio_base, new { htmlAttributes = new { @class = "form-input", type = "number", step = "0.01", min = "0" } })
+                        </div>
+                        <div class="form-group-custom" style="flex: 1;">
+                            @Html.LabelFor(model => model.iva_porcentaje, "IVA %")
+                            <select id="iva_porcentaje" name="iva_porcentaje" class="form-input">
+                                @for (var i = 0; i <= 19; i++)
+                                {
+                                    <option value="@i">@i%</option>
+}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group-custom">
+                        @Html.LabelFor(model => model.stock, "Cantidad Inicial")
+                        @Html.EditorFor(model => model.stock, new { htmlAttributes = new { @class = "form-input", type = "number", min = "0" } })
+                    </div>
+
+                    <div class="form-group-custom">
+                        @Html.LabelFor(model => model.estado, "Estado inicial")
+                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-input", @Value = "Activo" } })
+                    </div>
+                </div>
             </div>
 
-            <!-- NOMBRE -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.nombre)
-                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            <div class="form-group-custom" style="margin-top: 20px;">
+                @Html.LabelFor(model => model.descripcion, "Descripción Detallada")
+                @Html.TextAreaFor(model => model.descripcion, new { @class = "form-input", rows = "3", placeholder = "Escriba las especificaciones técnicas aquí..." })
             </div>
 
-            <!-- DESCRIPCIÓN -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.descripcion)
-                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
-            </div>
+            <hr />
 
-            <!-- PRECIO BASE -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.precio_base)
-                @Html.EditorFor(model => model.precio_base, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01", min = "0" } })
-                @Html.ValidationMessageFor(model => model.precio_base, "", new { @class = "text-danger" })
+            <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 20px;">
+                <input type="submit" value="💾 Guardar Producto" class="btn-ferreteria" style="padding: 12px 40px; font-size: 1.1em;" />
             </div>
-
-            <!-- IVA (%) DESPLEGABLE -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.iva_porcentaje)
-                <select id="iva_porcentaje" name="iva_porcentaje" class="form-control">
-                    @for (var i = 0; i <= 19; i++)
-                    {
-                        <option value="@i">@i%</option>
-                    }
-                </select>
-                <div class="text-danger"></div>
-            </div>
-
-            <!-- CATEGORÍA DESPLEGABLE -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.categoria)
-                <select id="categoria" name="categoria" class="form-control">
-                    <option value="">-- Seleccione categoría --</option>
-                    <option value="Tornilleria">Tornillería</option>
-                    <option value="HerramientasManual">Herramientas Manuales</option>
-                    <option value="HerramientasElectrica">Herramientas Eléctricas</option>
-                    <option value="PinturasBarnices">Pinturas y Barnices</option>
-                    <option value="MaterialesConstruccion">Materiales de Construcción</option>
-                    <option value="Electricidad">Electricidad</option>
-                    <option value="Plomeria">Plomería</option>
-                    <option value="Jardineria">Jardinería</option>
-                </select>
-                <div class="text-danger"></div>
-            </div>
-
-            <!-- STOCK -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.stock)
-                @Html.EditorFor(model => model.stock, new { htmlAttributes = new { @class = "form-control", type="number", min="0", step="1" } })
-                @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
-            </div>
-
-            <!-- ESTADO -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.estado)
-                @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-            </div>
-
-            <!-- FECHA DE CREACIÓN -->
-            <div class="form-item">
-                @Html.LabelFor(model => model.fecha_creacion)
-                @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control", type="date" } })
-                @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
-            </div>
-
-            <!-- BOTÓN CREAR -->
-            <div class="form-item mt-3">
-                <input type="submit" value="Crear Producto" class="btn btn-ferreteria" />
-            </div>
-
         </div>
     }
 </div>

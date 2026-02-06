@@ -1,79 +1,57 @@
 ﻿@model ferre2.Models.productos
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Producto";
 }
 
-<div class="productos-wrapper">
+<div class="productos-wrapper" style="max-width: 700px; margin: 0 auto;">
 
-    <!-- HEADER -->
-    <div class="productos-header-nuevo">
+    <div class="productos-header-nuevo" style="background-color: #c0392b;">
         <div class="header-title">
-            <h2>Eliminar Producto</h2>
+            <h2 style="color: white;">⚠️ Confirmar Eliminación</h2>
         </div>
-        <div>
-            <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
-        </div>
+        @Html.ActionLink("← Cancelar", "Index", null, new { @class = "btn-outline-ferreteria", @style = "color: white; border-color: white;" })
     </div>
 
-    <!-- DETALLES -->
-    <div class="card-producto-nuevo card-content p-4">
+    <div class="card-producto-nuevo" style="padding: 30px; border-top: 5px solid #c0392b;">
 
-        <div class="detalle-item">
-            <span class="detalle-label">Código:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.codigo)</span>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h3 style="color: #2c3e50; margin-bottom: 10px;">¿Está seguro de eliminar este producto?</h3>
+            <p style="color: #7f8c8d;">Esta acción es permanente y afectará los registros de inventario.</p>
         </div>
 
-        <div class="detalle-item">
-            <span class="detalle-label">Nombre:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.nombre)</span>
+        <div style="background: #fdf2f2; border-radius: 8px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <small style="text-transform: uppercase; color: #95a5a6; font-weight: bold;">Producto</small>
+                <p style="font-size: 1.2em; font-weight: bold; color: #c0392b; margin: 0;">@Model.nombre</p>
+            </div>
+            <div>
+                <small style="text-transform: uppercase; color: #95a5a6; font-weight: bold;">Código de Ref.</small>
+                <p style="font-size: 1.2em; margin: 0;">#@Model.codigo</p>
+            </div>
+            <div>
+                <small style="text-transform: uppercase; color: #95a5a6; font-weight: bold;">Categoría</small>
+                <p style="margin: 0;">@Model.categoria</p>
+            </div>
+            <div>
+                <small style="text-transform: uppercase; color: #95a5a6; font-weight: bold;">Stock Actual</small>
+                <p style="margin: 0;">@Model.stock unidades</p>
+            </div>
         </div>
 
-        <div class="detalle-item">
-            <span class="detalle-label">Descripción:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.descripcion)</span>
-        </div>
-
-        <div class="detalle-item">
-            <span class="detalle-label">Precio Base:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.precio_base)</span>
-        </div>
-
-        <div class="detalle-item">
-            <span class="detalle-label">IVA %:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.iva_porcentaje)</span>
-        </div>
-
-        <div class="detalle-item">
-            <span class="detalle-label">Categoría:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.categoria)</span>
-        </div>
-
-        <div class="detalle-item">
-            <span class="detalle-label">Stock:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.stock)</span>
-        </div>
-
-        <div class="detalle-item">
-            <span class="detalle-label">Estado:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.estado)</span>
-        </div>
-
-        <div class="detalle-item">
-            <span class="detalle-label">Fecha de Creación:</span>
-            <span class="detalle-value">@Html.DisplayFor(model => model.fecha_creacion)</span>
-        </div>
-
-    </div>
-
-    <!-- ACCIONES -->
-    <div class="card-producto-nuevo card-actions p-4 d-flex gap-3">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <input type="submit" value="Eliminar" class="btn btn-danger" />
-            <a href="Index" class="btn btn-outline-ferreteria">Cancelar</a>
+            @Html.HiddenFor(model => model.id_producto)
+
+            <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                <button type="submit" class="btn-ferreteria" style="background-color: #e74c3c; width: 100%; padding: 15px; font-weight: bold;">
+                    🗑️ SÍ, ELIMINAR DEFINITIVAMENTE
+                </button>
+                <a href="@Url.Action("Index")" style="text-align: center; color: #7f8c8d; text-decoration: none; padding: 10px;">
+                    No deseo eliminarlo, regresar al listado
+                </a>
+            </div>
         }
     </div>
-
 </div>

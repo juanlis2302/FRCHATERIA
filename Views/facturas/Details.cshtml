@@ -1,97 +1,73 @@
 ﻿@model ferre2.Models.facturas
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles de la Factura";
 }
 
-<div class="main-container">
+<div class="productos-wrapper" style="max-width: 850px; margin: auto;">
 
-    <div class="table-card">
-
-        <!-- HEADER -->
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Detalles de la Factura</h2>
-            </div>
-            <div>
-                <p>
-                    @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_factura }, new { @class = "btn btn-sm btn-outline-ferreteria" })
-                    @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-secondary" })
-                </p>
-                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
-            </div>
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2 style="margin:0;">Detalles de la Factura</h2>
         </div>
-
-        <!-- DETALLES -->
-        <div class="card-content p-4 form-ferreteria">
-
-            <div class="detalle-item">
-                <span class="detalle-label">Número de Factura:</span>
-                <span class="detalle-value">@Model.numero_factura</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Emisión:</span>
-                <span class="detalle-value">@Model.fecha_emision</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Vencimiento:</span>
-                <span class="detalle-value">@Model.fecha_vencimiento</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Subtotal:</span>
-                <span class="detalle-value">@Model.subtotal</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total Impuestos:</span>
-                <span class="detalle-value">@Model.total_impuestos</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total Descuentos:</span>
-                <span class="detalle-value">@Model.total_descuentos</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total:</span>
-                <span class="detalle-value">@Model.total</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Estado:</span>
-                <span class="detalle-value">@Model.estado</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Método de Pago:</span>
-                <span class="detalle-value">@Model.metodo_pago</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Notas:</span>
-                <span class="detalle-value">@Model.notas</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Creación:</span>
-                <span class="detalle-value">@Model.fecha_creacion</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Modificación:</span>
-                <span class="detalle-value">@Model.fecha_modificacion</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Cliente:</span>
-                <span class="detalle-value">@Model.clientes.nombre_razon_social</span>
-            </div>
-
+        <div style="display: flex; gap: 10px;">
+            @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_factura }, new { @class = "btn-ferreteria", @style = "text-decoration:none; background-color: #2c3e50;" })
+            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn-outline-ferreteria", @style = "text-decoration:none;" })
         </div>
-
     </div>
 
+    <div class="card-producto-nuevo" style="padding: 30px; display: flex; flex-direction: column; gap: 20px;">
+
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">N° de Factura</label>
+                <div class="form-control" style="background:#f8f9fa; height:auto;"># @Model.numero_factura</div>
+            </div>
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">ID Cliente</label>
+                <div class="form-control" style="background:#f8f9fa; height:auto;">@Model.id_cliente</div>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">Notas / Observaciones</label>
+            <div class="form-control" style="background:#f8f9fa; height:auto; min-height:38px;">
+                @Model.notas
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">Subtotal</label>
+                <div class="form-control" style="background:#f8f9fa;">$ @Model.subtotal</div>
+            </div>
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">Impuestos</label>
+                <div class="form-control" style="background:#f8f9fa;">$ @Model.total_impuestos</div>
+            </div>
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#e67e22; margin-bottom:5px;">Total</label>
+                <div class="form-control" style="background:#fff5eb; border-color:#e67e22; font-weight:bold;">$ @Model.total</div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 20px;">
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">Estado</label>
+                <div class="form-control" style="background:#f8f9fa;">@Model.estado</div>
+            </div>
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">Método</label>
+                <div class="form-control" style="background:#f8f9fa;">@Model.metodo_pago</div>
+            </div>
+            <div class="form-item">
+                <label style="display:block; font-weight:bold; color:#7f8c8d; margin-bottom:5px;">Fecha Emisión</label>
+                <div class="form-control" style="background:#f8f9fa;">@Model.fecha_emision.ToShortDateString()</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; text-align: right; border-top: 1px solid #eee; padding-top: 20px;">
+            <small style="color: #bdc3c7;">ID Registro: @Model.id_factura</small>
+        </div>
+    </div>
 </div>

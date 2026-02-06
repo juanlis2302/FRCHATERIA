@@ -1,103 +1,73 @@
-﻿@{
-    ViewBag.Title = "Inicio";
-}
-
-<main class="main-container">
-
-    <!-- HERO -->
+﻿<main>
     <section class="hero-glass">
         <div class="hero-glass-content">
             <h1>Todo para tu proyecto en un solo lugar</h1>
             <p>Herramientas, materiales y soluciones profesionales.</p>
-
-            <a href="@Url.Action("Index","productos")"
-               class="btn btn-ferreteria">
-                Ver productos
-            </a>
+            <a href="@Url.Action("Index","productos")" class="btn btn-ferreteria">Ver productos</a>
         </div>
     </section>
 
     <div class="productos-wrapper">
 
-        <!-- QUIÉNES SOMOS -->
-        <section class="card-producto-nuevo">
-            <h3>¿Quiénes somos?</h3>
-
-            <div class="producto-info-nuevo">
-                <p>
-                    Somos una ferretería con años de experiencia ofreciendo productos de calidad
-                    para construcción, hogar e industria. Brindamos soluciones rápidas,
-                    inventario amplio y atención cercana.
-                </p>
-            </div>
-        </section>
-
-        <!-- PRODUCTOS -->
-        <section style="margin-top:40px;">
-
+        <section class="card-producto-nuevo" style="margin-bottom: 40px;">
             <div class="productos-header-nuevo">
-                <h2 class="header-title">Nuestros productos</h2>
+                <h2>¿Quiénes somos?</h2>
             </div>
-
-            <div class="productos-grid-nuevo">
-
-                <div class="card-producto-nuevo">
-                    <h3>🛠 Herramientas</h3>
-                    <div class="producto-info-nuevo">
-                        <p>Taladros, martillos, llaves, destornilladores y más.</p>
-                    </div>
-                </div>
-
-                <div class="card-producto-nuevo">
-                    <h3>🏗 Materiales</h3>
-                    <div class="producto-info-nuevo">
-                        <p>Cemento, tuberías, cables, tornillería y accesorios.</p>
-                    </div>
-                </div>
-
-                <div class="card-producto-nuevo">
-                    <h3>🦺 Seguridad</h3>
-                    <div class="producto-info-nuevo">
-                        <p>Cascos, guantes, gafas y equipos de protección personal.</p>
-                    </div>
-                </div>
-
+            <div class="producto-info-nuevo">
+                <p>Somos una ferretería con años de experiencia ofreciendo productos de calidad para construcción, hogar e industria.</p>
             </div>
         </section>
 
-        <!-- POR QUÉ ELEGIRNOS -->
-        <section style="margin-top:40px;" class="card-producto-nuevo">
+        <section class="card-producto-nuevo" style="margin-top:40px;">
+            <div class="productos-header-nuevo">
+                <h2>Nuestros Productos</h2>
+            </div>
 
-            <h3>¿Por qué elegirnos?</h3>
+            <div class="productos-grid-nuevo" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 10px;">
 
+                <div class="producto-info-nuevo" style="background: white; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3>🛠 Herramientas</h3>
+                    <p>Taladros, martillos, llaves, destornilladores y más.</p>
+                </div>
+
+                <div class="producto-info-nuevo" style="background: white; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3>🏗 Materiales</h3>
+                    <p>Cemento, tuberías, cables, tornillería y accesorios.</p>
+                </div>
+
+                <div class="producto-info-nuevo" style="background: white; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3>🦺 Seguridad</h3>
+                    <p>Cascos, guantes, gafas y equipos de protección personal.</p>
+                </div>
+            
+            </div>
+        </section>
+
+        <section class="card-producto-nuevo" style="margin-top: 40px;">
+            <div class="productos-header-nuevo">
+                <h3>¿Por qué elegirnos?</h3>
+            </div>
             <div class="producto-info-nuevo">
                 <ul class="features">
-                    <li>✅ Atención personalizada</li>
-                    <li>✅ Amplio inventario disponible</li>
-                    <li>✅ Facturación rápida</li>
-                    <li>✅ Entregas confiables</li>
-                    <li>✅ Precios competitivos</li>
+                    <li class="detalle-item">✅ Atención personalizada</li>
+                    <li class="detalle-item">✅ Amplio inventario disponible</li>
+                    <li class="detalle-item">✅ Facturación rápida</li>
                 </ul>
             </div>
-
         </section>
 
-        <!-- CTA -->
-        <section style="margin-top:40px;" class="card-producto-nuevo">
-
-            <h3>¿Listo para comenzar tu compra?</h3>
-
-            <div class="producto-info-nuevo" style="text-align:center;">
-                <p>Visítanos o contáctanos hoy mismo</p>
-
-                <a href="@Url.Action("Index","Home")"
-                   class="btn btn-ferreteria">
-                    Contáctanos
-                </a>
+        <section class="cta-container-nuevo">
+            <div class="cta-header-nuevo">
+                <h3>¿Listo para comenzar tu compra?</h3>
             </div>
 
+            <div class="cta-body-nuevo">
+                <p>Visítanos o contáctanos hoy mismo para asesorarte en tu proyecto con los mejores materiales.</p>
+
+                <a href="@Url.Action("Index","Home")" class="btn btn-ferreteria btn-cta-animado">
+                    Contáctanos ahora
+                </a>
+            </div>
         </section>
-
     </div>
-
 </main>

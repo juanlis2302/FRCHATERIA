@@ -1,94 +1,58 @@
-﻿@model ferre2.Models.facturas
+﻿@model ferre2.Models.detalles_factura
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle de Línea";
 }
 
-<div class="main-container">
-
-    <div class="table-card">
-
-        <!-- HEADER -->
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Detalles de la Factura</h2>
-            </div>
-            <div>
-                <a href="Edit/@Model.id_factura" class="btn btn-outline-ferreteria">✏️ Editar</a>
-                <a href="Index" class="btn btn-outline-ferreteria">← Volver</a>
-            </div>
+<div class="productos-wrapper">
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2 style="margin:0;">Información Técnica del Detalle</h2>
+            <span style="color: #7f8c8d; font-size: 0.9em;">ID de Registro: #@Model.id_detalle</span>
         </div>
-
-        <!-- DETALLES -->
-        <div class="card-content p-4">
-
-            <div class="detalle-item">
-                <span class="detalle-label">Número de Factura:</span>
-                <span class="detalle-value">@Model.numero_factura</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Emisión:</span>
-                <span class="detalle-value">@Model.fecha_emision</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Vencimiento:</span>
-                <span class="detalle-value">@Model.fecha_vencimiento</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Subtotal:</span>
-                <span class="detalle-value">@Model.subtotal</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total Impuestos:</span>
-                <span class="detalle-value">@Model.total_impuestos</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total Descuentos:</span>
-                <span class="detalle-value">@Model.total_descuentos</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Total:</span>
-                <span class="detalle-value">@Model.total</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Estado:</span>
-                <span class="detalle-value">@Model.estado</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Método de Pago:</span>
-                <span class="detalle-value">@Model.metodo_pago</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Notas:</span>
-                <span class="detalle-value">@Model.notas</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Creación:</span>
-                <span class="detalle-value">@Model.fecha_creacion</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Modificación:</span>
-                <span class="detalle-value">@Model.fecha_modificacion</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Cliente:</span>
-                <span class="detalle-value">@Model.clientes.nombre_razon_social</span>
-            </div>
-
+        <div>
+            @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.id_detalle }, new { @class = "btn-ferreteria", @style = "text-decoration:none; background-color: #2980b9; margin-right: 10px;" })
+            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn-ferreteria", @style = "text-decoration:none; background-color: #7f8c8d;" })
         </div>
-
     </div>
 
+    <div class="card-producto-nuevo" style="padding: 25px;">
+        <div class="row">
+            <div class="col-md-6" style="border-right: 1px solid #eee;">
+                <h4 style="color: #f39c12; border-bottom: 2px solid #f39c12; padding-bottom: 5px; width: fit-content;">📦 Referencias</h4>
+
+                <p style="margin-top:15px;"><strong>Factura N°:</strong> <span class="text-primary">@(Model.facturas?.numero_factura ?? "No asignada")</span></p>
+                <p><strong>Producto:</strong> @(Model.productos?.nombre ?? "Desconocido") (@(Model.productos?.codigo ?? "S/C"))</p>
+                <p><strong>Descripción:</strong> @Model.descripcion</p>
+
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <p style="margin:0;"><strong>Cantidad:</strong> @Model.cantidad.ToString("N2")</p>
+                    <p style="margin:0;"><strong>Precio Unitario:</strong> $@Model.precio_unitario.ToString("N2")</p>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="padding-left: 30px;">
+                <h4 style="color: #f39c12; border-bottom: 2px solid #f39c12; padding-bottom: 5px; width: fit-content;">💰 Desglose Económico</h4>
+
+                <table class="table table-borderless" style="margin-top:15px;">
+                    <tr>
+                        <td>Subtotal:</td>
+                        <td class="text-end">$@Model.subtotal.ToString("N2")</td>
+                    </tr>
+                    <tr>
+                        <td class="text-danger">Descuento (@Model.descuento_porcentaje%):</td>
+                        <td class="text-end text-danger">- $@Model.descuento_valor.ToString("N2")</td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">IVA (@Model.iva_porcentaje%):</td>
+                        <td class="text-end text-success">+ $@Model.iva_valor.ToString("N2")</td>
+                    </tr>
+                    <tr style="border-top: 2px solid #2c3e50; font-size: 1.4em; font-weight: bold;">
+                        <td>TOTAL:</td>
+                        <td class="text-end" style="color: #e67e22;">$@Model.total_linea.ToString("N2")</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

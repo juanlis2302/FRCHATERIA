@@ -1,112 +1,211 @@
 ﻿@model IEnumerable<ferre2.Models.detalles_factura>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gestión de Detalles";
 }
-<div class="main-container">
-
-    <div class="table-card">
-
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Detalle Facturas</h2>
-            </div>
-            <p class="btn btn-ferreteria">
-                @Html.ActionLink("➕ Nuevo Detalle Factura", "Create")
-            </p>
+<div class="productos-wrapper">
+    <div class="productos-header-nuevo">
+        <div class="header-title">
+            <h2 style="margin:0; font-weight:700; color:#2c3e50;">Listado de Detalles</h2>
+            <span style="color: #95a5a6; font-size: 0.9em;">📦 Gestión de líneas de artículos facturados</span>
         </div>
-        <div class="table-wrapper">
-            <table class="table table-hover table-ferreteria">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.id_detalle)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.descripcion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.cantidad)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.precio_unitario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.descuento_porcentaje)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.descuento_valor)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.iva_porcentaje)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.iva_valor)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.subtotal)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.total_linea)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.facturas.numero_factura)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.productos.codigo)
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(model => item.id_detalle)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.cantidad)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.precio_unitario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.descuento_porcentaje)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.descuento_valor)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.iva_porcentaje)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.iva_valor)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.subtotal)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.total_linea)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.facturas.numero_factura)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.productos.codigo)
-                            </td>
-                            <td class="text-nowrap">
-                                @Html.ActionLink("✏️", "Editar", "Edit", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-ferreteria" })
-                                @Html.ActionLink("👁️", "Detalles", "Details", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-outline-secondary" })
-                                @Html.ActionLink("🗑️", "Borrar", "Delete", new { id = item.id_detalle }, new { @class = "btn btn-sm btn-danger" })
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div>
+            @Html.ActionLink("➕ Nuevo Detalle de Factura", "Create", null, new { @class = "btn-ferreteria", @style = "text-decoration:none;" })
         </div>
     </div>
+
+    <div class="card-tabla">
+        <table class="ferre-table">
+            <thead>
+                <tr>
+                    <th>N° Factura</th>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th class="text-center">Cant.</th>
+                    <th>Precio Unit.</th>
+                    <th>Impuestos</th>
+                    <th style="color: #e67e22;">Total Línea</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span class="badge-id">#@Html.DisplayFor(modelItem => item.facturas.numero_factura)</span>
+                        </td>
+                        <td>
+                            <span class="badge-prod">@Html.DisplayFor(modelItem => item.productos.codigo)</span>
+                        </td>
+                        <td style="font-size: 0.9em; color: #555;">
+                            <strong>@Html.DisplayFor(modelItem => item.descripcion)</strong>
+                        </td>
+                        <td class="text-center" style="font-weight:bold;">
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td style="color: #27ae60; font-weight: 500;">
+                            $@item.precio_unitario.ToString("N2")
+                        </td>
+                        <td>
+                            <small class="text-muted">IVA: @item.iva_porcentaje%</small><br />
+                            <small style="color:#7f8c8d">(@item.iva_valor.ToString("C"))</small>
+                        </td>
+                        <td style="font-size: 1.1em; font-weight: 800; color: #e67e22;">
+                            $@item.total_linea.ToString("N2")
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="@Url.Action("Edit", new { id = item.id_detalle })" class="btn-action btn-edit" title="Editar">✏️</a>
+                                <a href="@Url.Action("Details", new { id = item.id_detalle })" class="btn-action btn-view" title="Detalles">👁️</a>
+                                <a href="@Url.Action("Delete", new { id = item.id_detalle })" class="btn-action btn-delete" title="Eliminar">🗑️</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Estilos mejorados para el Index */
+    .productos-wrapper {
+        padding: 20px;
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .productos-header-nuevo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-bottom: 25px;
+        border-left: 5px solid #f39c12;
+    }
+
+    .card-tabla {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        padding: 20px;
+    }
+
+    .ferre-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px; /* Espaciado entre filas */
+    }
+
+        .ferre-table thead th {
+            background-color: #fcfcfc;
+            color: #5d6d7e;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            padding: 15px;
+            border: none;
+        }
+
+        .ferre-table tbody tr {
+            background-color: #ffffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 8px;
+        }
+
+            .ferre-table tbody tr:hover {
+                transform: scale(1.005);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                background-color: #fffaf2;
+            }
+
+        .ferre-table td {
+            padding: 15px;
+            vertical-align: middle;
+            border-top: 1px solid #f1f1f1;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+    /* Estilo para los badges */
+    .badge-id {
+        background: #34495e;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .badge-prod {
+        background: #ebedef;
+        color: #2c3e50;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+    }
+
+    /* Botones de acción */
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .btn-action {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-edit {
+        background: #e8f4fd;
+        color: #3498db;
+    }
+
+    .btn-view {
+        background: #fef5e7;
+        color: #f39c12;
+    }
+
+    .btn-delete {
+        background: #fdeaea;
+        color: #e74c3c;
+    }
+
+    .btn-edit:hover {
+        background: #3498db;
+        color: white;
+    }
+
+    .btn-view:hover {
+        background: #f39c12;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .btn-ferreteria {
+        background: #f39c12;
+        color: white !important;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .btn-ferreteria:hover {
+            background: #e67e22;
+            box-shadow: 0 4px 10px rgba(230,126,34,0.3);
+        }
+</style>

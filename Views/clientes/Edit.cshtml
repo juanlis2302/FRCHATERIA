@@ -4,95 +4,90 @@
     ViewBag.Title = "Editar Cliente";
 }
 
-<div class="main-container">
+<div class="main-container" style="background: transparent;">
+    <div class="productos-wrapper" style="background: transparent; border: none; box-shadow: none;">
 
-    <div class="table-card">
+        <div class="card-producto-nuevo"
+             style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; margin-bottom: 25px; background: white !important;">
 
-        <!-- HEADER -->
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Editar Cliente</h2>
+            <div style="border-bottom: 3px solid #f39c12; padding-bottom: 5px;">
+                <h2 style="font-size: 2rem; font-weight: 700; color: #1a365d; margin: 0;">Editar Perfil: @Model.nombre_razon_social</h2>
             </div>
 
-            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-secondary" })
+            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn-ferreteria", @style = "background: #6c757d; color: white; border-radius: 10px; padding: 8px 15px; text-decoration: none;" })
         </div>
 
+        <div class="card-producto-nuevo"
+             style="background: rgba(255, 255, 255, 0.6) !important; backdrop-filter: blur(8px); padding: 40px; border: 1px solid rgba(255,255,255,0.2);">
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(m => m.id_cliente)
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.id_cliente)
 
-            <div class="p-4">
-
-                <div class="row g-3">
-
+                <div class="row g-4">
                     <div class="col-md-6">
-                        <label class="form-label">Nombre / Razón Social</label>
-                        @Html.TextBoxFor(m => m.nombre_razon_social, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.nombre_razon_social, "", new { @class = "text-danger" })
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Nombre / Razón Social</label>
+                        @Html.TextBoxFor(m => m.nombre_razon_social, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
                     </div>
 
                     <div class="col-md-3">
-                        <label class="form-label">Tipo Documento</label>
-                        @Html.TextBoxFor(m => m.tipo_documento, new { @class = "form-control" })
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Tipo Documento</label>
+                        @Html.TextBoxFor(m => m.tipo_documento, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
                     </div>
 
                     <div class="col-md-3">
-                        <label class="form-label">Número</label>
-                        @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control" })
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Dirección</label>
-                        @Html.TextBoxFor(m => m.direccion, new { @class = "form-control" })
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="form-label">Teléfono</label>
-                        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control" })
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="form-label">Email</label>
-                        @Html.TextBoxFor(m => m.email, new { @class = "form-control", type = "email" })
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Número Documento</label>
+                        @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Ciudad</label>
-                        @Html.TextBoxFor(m => m.ciudad, new { @class = "form-control" })
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Teléfono</label>
+                        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
+                    </div>
+
+                    <div class="col-md-8">
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Correo Electrónico</label>
+                        @Html.TextBoxFor(m => m.email, new { @class = "form-control", type = "email", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
+                    </div>
+
+                    <div class="col-md-12">
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Dirección</label>
+                        @Html.TextBoxFor(m => m.direccion, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Departamento</label>
-                        @Html.TextBoxFor(m => m.departamento, new { @class = "form-control" })
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Ciudad</label>
+                        @Html.TextBoxFor(m => m.ciudad, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Fecha Registro</label>
-                        @Html.TextBoxFor(m => m.fecha_registro, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Departamento</label>
+                        @Html.TextBoxFor(m => m.departamento, new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%;" })
                     </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label">Estado</label>
+                    <div class="col-md-2">
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Estado</label>
                         @Html.DropDownListFor(m => m.estado,
                             new SelectList(new[] { "Activo", "Inactivo" }),
-                            new { @class = "form-control" })
+                            new { @class = "form-control", @style = "background: white; border-radius: 5px; border: 1px solid #f39c12; padding: 10px; width: 100%; font-weight: bold;" })
                     </div>
 
+                    <div class="col-md-2">
+                        <label style="font-weight: bold; color: #1a365d; display: block; margin-bottom: 5px;">Registro</label>
+                        @Html.TextBoxFor(m => m.fecha_registro, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @readonly = "readonly", @style = "background: #eee; border-radius: 5px; border: 1px solid #ccc; padding: 10px; width: 100%; cursor: not-allowed;" })
+                    </div>
                 </div>
 
-                <div class="text-end mt-4">
-                    <button type="submit" class="btn btn-ferreteria">
-                        💾 Guardar cambios
+                <div style="text-align: right; margin-top: 40px;">
+                    <button type="submit" class="btn-ferreteria"
+                            style="background: #f39c12; color: #1a365d; font-weight: 900; border: none; border-radius: 10px; padding: 15px 50px; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);">
+                        💾 Guardar Ficha de Cliente
                     </button>
                 </div>
-
-            </div>
-        }
-
+            }
+        </div>
     </div>
-
 </div>
 
 @section Scripts {

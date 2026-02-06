@@ -4,85 +4,80 @@
     ViewBag.Title = "Delete";
 }
 
-<div class="main-container">
+<div class="main-container" style="background: transparent; padding-top: 0 !important;">
+    <div class="productos-wrapper" style="background: transparent; border: none; box-shadow: none; margin-top: 10px !important; padding-top: 0 !important;">
 
-    <div class="table-card">
+        <div class="card-producto-nuevo"
+             style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; margin-bottom: 25px; background: white !important; border: none !important;">
 
-        <!-- HEADER -->
-        <div class="section-header">
-            <div class="header-title">
-                <h2>Eliminar Cliente</h2>
+            <div style="border-bottom: 3px solid #dc3545; padding-bottom: 5px;">
+                <h2 style="font-size: 1.8rem; font-weight: 700; color: #1a365d; margin: 0;">¿Eliminar este cliente?</h2>
             </div>
-            <div>
-                @Html.ActionLink("← Volver", "Index", null, new { @class = "btn btn-outline-secondary" })
-            </div>
+
+            @Html.ActionLink("← Volver", "Index", null, new { @class = "btn-ferreteria", @style = "background: #6c757d; color: white; border-radius: 10px; padding: 8px 15px; text-decoration: none; font-size: 0.9rem;" })
         </div>
 
-        <!-- DETALLES -->
-        <div class="card-content p-4">
+        <div class="card-producto-nuevo"
+             style="background: rgba(255, 255, 255, 0.6) !important;
+                    backdrop-filter: blur(8px);
+                    padding: 40px;
+                    border: none !important;
+                    box-shadow: none !important;
+                    border-radius: 15px;">
 
-            <div class="detalle-item">
-                <span class="detalle-label">Nombre / Razón Social:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.nombre_razon_social)</span>
+            <div style="background: rgba(220, 53, 69, 0.1); border-left: 5px solid #dc3545; padding: 15px; margin-bottom: 30px; color: #721c24;">
+                <strong>Atención:</strong> Esta acción no se puede deshacer. Se eliminarán todos los datos asociados a este cliente.
             </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Tipo Documento:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.tipo_documento)</span>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <p style="margin-bottom: 15px;">
+                        <span style="display: block; font-weight: bold; color: #1a365d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Nombre / Razón Social</span>
+                        <span style="font-size: 1.2rem; color: #000;">@Model.nombre_razon_social</span>
+                    </p>
+
+                    <p style="margin-bottom: 15px;">
+                        <span style="display: block; font-weight: bold; color: #1a365d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Identificación</span>
+                        <span style="font-size: 1.1rem; color: #333;">@Model.tipo_documento: @Model.numero_documento</span>
+                    </p>
+
+                    <p style="margin-bottom: 15px;">
+                        <span style="display: block; font-weight: bold; color: #1a365d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Dirección</span>
+                        <span style="font-size: 1.1rem; color: #333;">@Model.direccion</span>
+                    </p>
+                </div>
+
+                <div class="col-md-6" style="border-left: 1px solid rgba(26, 54, 93, 0.1); padding-left: 30px;">
+                    <p style="margin-bottom: 15px;">
+                        <span style="display: block; font-weight: bold; color: #1a365d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Correo Electrónico</span>
+                        <span style="font-size: 1.1rem; color: #333;">@Model.email</span>
+                    </p>
+
+                    <p style="margin-bottom: 15px;">
+                        <span style="display: block; font-weight: bold; color: #1a365d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Estado</span>
+                        <span style="font-size: 1.1rem; color: #333;">@Model.estado</span>
+                    </p>
+
+                    <p>
+                        <span style="display: block; font-weight: bold; color: #1a365d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Fecha Registro</span>
+                        <span style="font-size: 1.1rem; color: #333;">@Model.fecha_registro</span>
+                    </p>
+                </div>
             </div>
 
-            <div class="detalle-item">
-                <span class="detalle-label">Número Documento:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.numero_documento)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Dirección:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.direccion)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Teléfono:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.telefono)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Email:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.email)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Ciudad:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.ciudad)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Departamento:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.departamento)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Fecha de Registro:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.fecha_registro)</span>
-            </div>
-
-            <div class="detalle-item">
-                <span class="detalle-label">Estado:</span>
-                <span class="detalle-value">@Html.DisplayFor(model => model.estado)</span>
+            <div style="text-align: right; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 25px;">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="@Url.Action("Index")" class="btn-ferreteria" style="background: #6c757d; color: white; border-radius: 10px; padding: 12px 25px; text-decoration: none; margin-right: 15px; display: inline-block;">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn-ferreteria" style="background: #dc3545; color: white; border-radius: 10px; padding: 12px 35px; border: none; font-weight: bold; cursor: pointer;">
+                        ⚠️ CONFIRMAR ELIMINACIÓN
+                    </button>
+                }
             </div>
 
         </div>
-
-        <!-- ACCIONES -->
-        <div class="card-actions p-4">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Eliminar" class="btn btn-danger" />
-                <a href="Index" class="btn btn-outline-ferreteria">Cancelar</a>
-            }
-        </div>
-
     </div>
-
 </div>
