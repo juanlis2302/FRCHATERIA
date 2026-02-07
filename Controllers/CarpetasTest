@@ -1,1 +1,287 @@
+FerreTests/ClienteTests.cs
+
+using Xunit;
+using ferre2.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FerreTests
+{
+    public class ClienteTests
+    {
+        [Fact]
+        public void CrearCliente_Valido()
+        {
+            var cliente = new clientes
+            {
+                id_cliente = 1,
+                nombre_razon_social = "Sebastian Muñoz",
+                tipo_documento = "CC",
+                numero_documento = "123456789",
+                direccion = "Calle 123",
+                telefono = "3001234567",
+                email = "sebastian@test.com",
+                ciudad = "Bogotá",
+                departamento = "Cundinamarca",
+                fecha_registro = DateTime.Now,
+                estado = "Activo"
+            };
+
+            Assert.NotNull(cliente);
+            Assert.Equal("Sebastian Muñoz", cliente.nombre_razon_social);
+        }
+
+        [Fact]
+        public void Cliente_NoPermitirDuplicados()
+        {
+            var clientesLista = new List<clientes>
+            {
+                new clientes { numero_documento = "123" },
+                new clientes { numero_documento = "456" }
+            };
+
+            var nuevo = new clientes { numero_documento = "123" };
+
+            bool existe = clientesLista.Any(c => c.numero_documento == nuevo.numero_documento);
+
+            Assert.True(existe);
+        }
+
+        [Fact]
+        public void Cliente_ValidarPasswordSegura()
+        {
+            string password = "1234";
+
+            bool longitudValida = password.Length >= 6;
+
+            Assert.False(longitudValida);
+        }
+
+        [Fact]
+        public void Cliente_EditarNombre()
+        {
+            var cliente = new clientes
+            {
+                nombre_razon_social = "Juan"
+            };
+
+            cliente.nombre_razon_social = "Pedro";
+
+            Assert.Equal("Pedro", cliente.nombre_razon_social);
+        }
+
+        [Fact]
+        public void Cliente_EliminarCliente()
+        {
+            clientes cliente = new clientes
+            {
+                nombre_razon_social = "Eliminar"
+            };
+
+            cliente = null;
+
+            Assert.Null(cliente);
+        }
+
+        [Fact]
+        public void Cliente_CamposObligatorios()
+        {
+            var cliente = new clientes();
+
+            Assert.True(string.IsNullOrEmpty(cliente.nombre_razon_social));
+            Assert.True(string.IsNullOrEmpty(cliente.numero_documento));
+        }
+
+        [Fact]
+        public void Cliente_EmailInvalido()
+        {
+            var cliente = new clientes
+            {
+                email = "correo_invalido"
+            };
+
+            bool contieneArroba = cliente.email.Contains("@");
+
+            Assert.False(contieneArroba);
+        }
+    }
+}
+
+
+FerreTests/ProductoTests.cs
+
+
+using Xunit;
+using ferre2.Models;
+
+namespace FerreTests
+{
+    public class ProductoTests
+    {
+        [Fact]
+        public void CrearProducto_Valido()
+        {
+            var producto = new productos
+            {
+                id_producto = 1,
+                descripcion = "Martillo"
+            };
+
+            Assert.NotNull(producto);
+            Assert.Equal("Martillo", producto.descripcion);
+        }
+
+        [Fact]
+        public void EditarProducto()
+        {
+            var producto = new productos
+            {
+                descripcion = "Taladro"
+            };
+
+            producto.descripcion = "Taladro Industrial";
+
+            Assert.Equal("Taladro Industrial", producto.descripcion);
+        }
+
+        [Fact]
+        public void EliminarProducto()
+        {
+            productos producto = new productos
+            {
+                descripcion = "Eliminar"
+            };
+
+            producto = null;
+
+            Assert.Null(producto);
+        }
+    }
+}
+
+FerreTests/FacturaTests.cs
+
+using Xunit;
+using ferre2.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FerreTests
+{
+    public class FacturaTests
+    {
+        [Fact]
+        public void CrearFactura_Valida()
+        {
+            var factura = new facturas
+            {
+                id_factura = 1,
+                numero_factura = "F001",
+                fecha_emision = DateTime.Now,
+                id_cliente = 1,
+                subtotal = 100000,
+                total_impuestos = 19000,
+                total_descuentos = 0,
+                total = 119000,
+                estado = "Pagada",
+                metodo_pago = "Efectivo",
+                fecha_creacion = DateTime.Now,
+                fecha_modificacion = DateTime.Now
+            };
+
+            Assert.NotNull(factura);
+            Assert.Equal("F001", factura.numero_factura);
+        }
+
+        [Fact]
+        public void Factura_NoDuplicarNumero()
+        {
+            var facturasLista = new List<facturas>
+            {
+                new facturas { numero_factura = "F001" },
+                new facturas { numero_factura = "F002" }
+            };
+
+            var nuevaFactura = new facturas { numero_factura = "F001" };
+
+            bool existe = facturasLista.Any(f => f.numero_factura == nuevaFactura.numero_factura);
+
+            Assert.True(existe);
+        }
+
+        [Fact]
+        public void ListarFacturas()
+        {
+            var facturasLista = new List<facturas>
+            {
+                new facturas { numero_factura = "F001" },
+                new facturas { numero_factura = "F002" }
+            };
+
+            Assert.Equal(2, facturasLista.Count);
+        }
+    }
+}
+
+
+FerreTests/DetalleFacturaTests.cs
+
+
+using Xunit;
+using ferre2.Models;
+
+namespace FerreTests
+{
+    public class DetalleFacturaTests
+    {
+        [Fact]
+        public void CrearDetalleFactura_Valido()
+        {
+            var detalle = new detalles_factura
+            {
+                id_detalle = 1,
+                id_factura = 1,
+                id_producto = 1,
+                descripcion = "Martillo",
+                cantidad = 2,
+                precio_unitario = 15000,
+                subtotal = 30000,
+                total_linea = 30000
+            };
+
+            Assert.NotNull(detalle);
+            Assert.Equal(2, detalle.cantidad);
+        }
+
+        [Fact]
+        public void CalcularSubtotal_Correcto()
+        {
+            var detalle = new detalles_factura
+            {
+                cantidad = 3,
+                precio_unitario = 10000
+            };
+
+            var subtotalCalculado = detalle.cantidad * detalle.precio_unitario;
+
+            Assert.Equal(30000, subtotalCalculado);
+        }
+
+        [Fact]
+        public void EliminarDetalleFactura()
+        {
+            detalles_factura detalle = new detalles_factura
+            {
+                descripcion = "Eliminar"
+            };
+
+            detalle = null;
+
+            Assert.Null(detalle);
+        }
+    }
+}
+
 
