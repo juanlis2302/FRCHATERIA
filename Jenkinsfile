@@ -4,33 +4,31 @@ pipeline {
     stages {
         stage('Restaurar dependencias') {
             steps {
-                bat 'dotnet restore'
+                bat 'dotnet restore ferre2.sln'
             }
         }
 
         stage('Compilar solución') {
             steps {
-                bat 'dotnet build --configuration Release'
+                bat 'dotnet build ferre2.sln --configuration Release'
             }
         }
 
         stage('Ejecutar pruebas xUnit') {
             steps {
-                bat 'dotnet test --configuration Release --logger "trx;LogFileName=test_results.trx"'
+                bat 'dotnet test ferre2.sln --no-build --verbosity normal'
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline finalizado'
-        }
         success {
-            echo '✅ Pruebas xUnit ejecutadas correctamente'
+            echo '✅ Pipeline ejecutado correctamente'
         }
         failure {
-            echo '❌ Fallaron pruebas'
+            echo '❌ Falló la compilación o las pruebas'
         }
     }
 }
+
 
