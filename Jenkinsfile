@@ -2,21 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Restore') {
+
+        stage('Restore MVC') {
             steps {
-                bat 'dotnet restore'
+                bat 'dotnet restore PruebaUsuario/PruebaUsuario.csproj'
             }
         }
 
-        stage('Build') {
+        stage('Restore Tests') {
             steps {
-                bat 'dotnet build --no-restore'
+                bat 'dotnet restore PruebaUsuario.Tests/PruebaUsuario.Tests.csproj'
+            }
+        }
+
+        stage('Build MVC') {
+            steps {
+                bat 'dotnet build PruebaUsuario/PruebaUsuario.csproj --no-restore'
+            }
+        }
+
+        stage('Build Tests') {
+            steps {
+                bat 'dotnet build PruebaUsuario.Tests/PruebaUsuario.Tests.csproj --no-restore'
             }
         }
 
         stage('Test xUnit') {
             steps {
-                bat 'dotnet test PruebaUsuario.Tests/PruebaUsuario.Tests.csproj'
+                bat 'dotnet test PruebaUsuario.Tests/PruebaUsuario.Tests.csproj --no-build'
             }
         }
     }
