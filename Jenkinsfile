@@ -12,9 +12,9 @@ pipeline {
         stage('Compilar proyecto (MSBuild)') {
             steps {
                 bat '''
-                "C:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.csproj ^
-                /p:Configuration=Release ^
-                /p:Platform="Any CPU"
+                for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\\**\\Bin\\MSBuild.exe`) do (
+                    "%%i" ferre2.csproj /p:Configuration=Release /p:Platform="Any CPU"
+                )
                 '''
             }
         }
@@ -35,3 +35,4 @@ pipeline {
         }
     }
 }
+
