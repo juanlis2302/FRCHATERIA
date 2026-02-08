@@ -81,19 +81,47 @@ namespace ferre2.Controllers
         // POST: facturas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_factura,numero_factura,fecha_emision,fecha_vencimiento,id_cliente,subtotal,total_impuestos,total_descuentos,total,estado,metodo_pago,notas,fecha_creacion,fecha_modificacion")] facturas facturas)
+      [HttpPost]
+[ValidateAntiForgeryToken]
+public ActionResult Edit([Bind(Include = "id_factura,numero_factura,fecha_emision,fecha_vencimiento,id_cliente,subtotal,total_impuestos,total_descuentos,total,estado,metodo_pago,notas,fecha_creacion,fecha_modificacion")] facturas facturas)
+{
+    if (ModelState.IsValid)
+    {
+        // --- FIX DE FECHAS ---
+        // 1. Validar fecha_creacion (para que no de error si viene vacía desde la vista)
+        if (facturas.fecha_creacion < (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(facturas).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.id_cliente = new SelectList(db.clientes, "id_cliente", "nombre_razon_social", facturas.id_cliente);
-            return View(facturas);
+            // Intentamos mantener la fecha original si es posible, o asignamos la actual
+            facturas.fecha_creacion = DateTime.Now; 
         }
+
+        // 2. Asignar automáticamente la fecha de modificación
+        facturas.fecha_modificacion = DateTime.Now;
+
+        try
+        {
+            db.Entry(facturas).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        catch (Exception ex)
+        {
+            // Captura el error real (como el de datetime2) y lo muestra en la vista
+            var inner = ex.InnerException?.InnerException?.Message ?? ex.Message;
+            ModelState.AddModelError("", "Error al actualizar: " + inner);
+        }
+    }
+
+    // --- DEPURACIÓN DE ERRORES DE VALIDACIÓN ---
+    var errores = ModelState.Values.SelectMany(v => v.Errors);
+    foreach (var error in errores)
+    {
+        System.Diagnostics.Debug.WriteLine("Error en validación de Factura: " + error.ErrorMessage);
+    }
+
+    ViewBag.id_cliente = new SelectList(db.clientes, "id_cliente", "nombre_razon_social", facturas.id_cliente);
+    return View(facturas);
+}
 
         // GET: facturas/Delete/5
         public ActionResult Delete(int? id)

@@ -1356,4 +1356,110 @@ textarea.form-input {
         background: #e67e22;
         box-shadow: 0 4px 10px rgba(230,126,34,0.3);
     }
+/* CONTENEDOR PRINCIPAL Login */
+.login-body-wrapper {
+    background-color: #f4f7f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
 
+/* TARJETA DE LOGIN */
+.login-card-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 420px;
+    border-top: 6px solid #e67e22; /* El naranja ferretero */
+}
+
+/* TÍTULOS */
+.login-header-title {
+    color: #2c3e50;
+    font-weight: 800;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-header-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+/* INPUTS Y LABELS */
+.login-form-label {
+    display: block;
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.login-input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+    .login-input-field:focus {
+        outline: none;
+        border-color: #e67e22;
+        box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+    }
+
+/* BOTÓN PRINCIPAL */
+.login-btn-ferreteria {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+    .login-btn-ferreteria:hover {
+        background-color: #d35400;
+    }
+
+/* LINKS Y PIE */
+.login-footer-link {
+    text-align: center;
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.login-link-action {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .login-link-action:hover {
+        text-decoration: underline;
+    }
+
+.login-validation-error {
+    font-size: 0.8rem;
+    color: #e74c3c;
+    margin-top: 5px;
+    display: block;
+}

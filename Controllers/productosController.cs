@@ -52,9 +52,33 @@ namespace ferre2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.productos.Add(productos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // SOLUCIÓN AL ERROR DATETIME:
+                // Si la fecha llega vacía (0001), le asignamos la fecha actual del servidor
+                if (productos.fecha_creacion < (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue)
+                {
+                    productos.fecha_creacion = DateTime.Now;
+                }
+
+                try
+                {
+                    db.productos.Add(productos);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    // Esto captura errores inesperados al guardar
+                    ModelState.AddModelError("", "Error al guardar en BD: " + ex.Message);
+                }
+            }
+
+            // ESTE ES EL ELSE QUE BUSCAS:
+            // Si llegamos aquí, algo falló. Vamos a inspeccionar los errores.
+            var errores = ModelState.Values.SelectMany(v => v.Errors);
+            foreach (var error in errores)
+            {
+                // Esto aparecerá en el "Resumen de Errores" de tu Vista (ValidationSummary)
+                System.Diagnostics.Debug.WriteLine("Error detectado: " + error.ErrorMessage);
             }
 
             return View(productos);

@@ -2,7 +2,7 @@
 @model LoginViewModel
 
 @{
-    ViewBag.Title = "Iniciar sesión";
+    ViewBag.Title = "Iniciar Sesión";
     Layout = null;
 }
 
@@ -10,66 +10,51 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - Sistema Ferretería</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="~/Content/bootstrap.css" />
     <link rel="stylesheet" href="~/Content/Style.css" />
 </head>
-<body class="login-body">
+<body class="login-body-wrapper">
 
-    <main class="container mt-5">
-        <h2 class="text-center">@ViewBag.Title</h2>
+    <div class="login-card-container">
+        <div class="text-center mb-2" style="font-size: 2.5rem;">🛠️</div>
+        <h2 class="login-header-title">Ferretería</h2>
+        <p class="login-header-subtitle">Ingresa tus credenciales para continuar</p>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "login-validation-error mb-3" })
 
-                <section id="loginForm">
-                    @using (Html.BeginForm("Login", "Account",
-                        new { ReturnUrl = ViewBag.ReturnUrl },
-                        FormMethod.Post,
-                        new { role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="form-check mb-3">
-                            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
-                            @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label" })
-                        </div>
-
-                        <button type="submit" class="btn btn-outline-dark w-100">
-                            Iniciar sesión
-                        </button>
-
-                        <div class="text-center mt-3">
-                            @Html.ActionLink("Registrarse como usuario nuevo", "Register", null, new { @class = "text-decoration-none" })
-                        </div>
-                    }
-                </section>
-
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Email, new { @class = "login-form-label" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "login-input-field", placeholder = "correo@ejemplo.com" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "login-validation-error" })
             </div>
-        </div>
-    </main>
+
+            <div class="mb-4">
+                @Html.LabelFor(m => m.Password, "Contraseña", new { @class = "login-form-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "login-input-field", placeholder = "••••••••" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "login-validation-error" })
+            </div>
+
+            <div class="mb-4 form-check">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
+                <label class="form-check-label" for="RememberMe" style="font-size: 0.9rem; color: #7f8c8d;">Recordarme en este equipo</label>
+            </div>
+
+            <button type="submit" class="login-btn-ferreteria">
+                ACCEDER AL PANEL
+            </button>
+
+            <div class="login-footer-link">
+                <span style="color: #95a5a6; font-size: 0.85rem;">¿Eres nuevo?</span><br />
+                @Html.ActionLink("Crea una cuenta nueva", "Register", null, new { @class = "login-link-action" })
+            </div>
+        }
+    </div>
 
     <script src="~/Scripts/jquery-3.7.0.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-
     @Scripts.Render("~/bundles/jqueryval")
 </body>
 </html>
-

@@ -3,41 +3,46 @@
     ViewBag.Title = "Registrarse";
 }
 
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
+    <div class="login-card-container">
+        <div class="text-center mb-2" style="font-size: 2.5rem;">📝</div>
+        <h2 class="login-header-title">Registro</h2>
+        <p class="login-header-subtitle">Crea una cuenta para el personal</p>
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Cree una cuenta nueva.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="offset-md-2 col-md-10">
-                <input type="submit" value="Registrarse" class="btn btn-outline-dark" />
-            </div>
-        </div>
-    }
-</main>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "login-validation-error" })
 
-@section Scripts {
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Email, new { @class = "login-form-label" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "login-input-field", placeholder = "correo@ferreteria.com" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "login-validation-error" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Password, "Contraseña", new { @class = "login-form-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "login-input-field", placeholder = "Mínimo 6 caracteres" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "login-validation-error" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.ConfirmPassword, "Confirmar Contraseña", new { @class = "login-form-label" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "login-input-field", placeholder = "Repite tu contraseña" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "login-validation-error" })
+            </div>
+
+            <button type="submit" class="login-btn-ferreteria">
+                Crear Cuenta
+            </button>
+
+            <div class="login-footer-link">
+                <span style="color: #95a5a6; font-size: 0.85rem;">¿Ya tienes usuario?</span><br />
+                @Html.ActionLink("Volver al Login", "Login", null, new { @class = "text-decoration-none", @style = "color:#e67e22; font-weight:bold;" })
+            </div>
+        }
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
-}
+</body>
+</html>

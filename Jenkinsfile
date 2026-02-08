@@ -17,7 +17,7 @@ pipeline {
 
         stage('Ejecutar pruebas xUnit') {
             steps {
-                bat 'dotnet test PruebaUsuario/PruebaUsuario.csproj --no-build'
+                bat 'dotnet test PruebaUsuario/UnitTest1.csproj --no-build'
             }
         }
     }
