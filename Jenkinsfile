@@ -25,11 +25,8 @@ pipeline {
             steps {
                 bat '''
                 for /F "usebackq delims=" %%i in (`
-                  "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" 
-                  -latest -products * 
-                  -requires Microsoft.Component.MSBuild 
-                  -find MSBuild\\**\\Bin\\MSBuild.exe"
-                ) do (
+"C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\\**\\Bin\\MSBuild.exe
+                `) do (
                     "%%i" ferre2.csproj /p:Configuration=Debug
                 )
                 '''
@@ -70,3 +67,4 @@ pipeline {
         }
     }
 }
+
