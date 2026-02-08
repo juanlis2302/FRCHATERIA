@@ -15,7 +15,7 @@ pipeline {
                 if not exist nuget.exe (
                     powershell -Command "Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe"
                 )
-                nuget.exe restore ferre2.csproj
+                nuget.exe restore ferre2.csproj -SolutionDirectory .
                 '''
             }
         }
@@ -46,4 +46,5 @@ pipeline {
         }
     }
 }
+
 
