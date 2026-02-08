@@ -3,33 +3,21 @@ pipeline {
 
     stages {
 
-        stage('Restore MVC') {
+        stage('Restore') {
             steps {
-                bat 'dotnet restore PruebaUsuario/PruebaUsuario.csproj'
+                bat 'for /r %%f in (*.csproj) do dotnet restore "%%f"'
             }
         }
 
-        stage('Restore Tests') {
+        stage('Build') {
             steps {
-                bat 'dotnet restore PruebaUsuario.Tests/PruebaUsuario.Tests.csproj'
-            }
-        }
-
-        stage('Build MVC') {
-            steps {
-                bat 'dotnet build PruebaUsuario/PruebaUsuario.csproj --no-restore'
-            }
-        }
-
-        stage('Build Tests') {
-            steps {
-                bat 'dotnet build PruebaUsuario.Tests/PruebaUsuario.Tests.csproj --no-restore'
+                bat 'for /r %%f in (*.csproj) do dotnet build "%%f" --no-restore'
             }
         }
 
         stage('Test xUnit') {
             steps {
-                bat 'dotnet test PruebaUsuario.Tests/PruebaUsuario.Tests.csproj --no-build'
+                bat 'dotnet test --no-build'
             }
         }
     }
@@ -43,3 +31,4 @@ pipeline {
         }
     }
 }
+
