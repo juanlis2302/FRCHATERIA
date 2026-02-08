@@ -23,11 +23,7 @@ pipeline {
         stage('Build MVC (MSBuild)') {
             steps {
                 bat '''
-                for /F "usebackq delims=" %%i in (`
-                  "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\\**\\Bin\\MSBuild.exe
-                `) do (
-                  "%%i" ferre2.csproj /p:Configuration=Debug
-                )
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.csproj /p:Configuration=Debug
                 '''
             }
         }
@@ -53,12 +49,13 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build y pruebas ejecutadas correctamente'
+            echo '✅ Build y pruebas completadas correctamente'
         }
         failure {
             echo '❌ Falló la compilación o las pruebas'
         }
     }
 }
+
 
 
