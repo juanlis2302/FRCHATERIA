@@ -9,9 +9,13 @@ pipeline {
             }
         }
 
-        stage('Compilar proyecto') {
+        stage('Compilar proyecto (MSBuild)') {
             steps {
-                bat 'dotnet build ferre2.csproj --no-restore'
+                bat '''
+                "C:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.csproj ^
+                /p:Configuration=Release ^
+                /p:Platform="Any CPU"
+                '''
             }
         }
 
