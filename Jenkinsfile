@@ -3,6 +3,12 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Restaurar dependencias') {
             steps {
                 bat 'dotnet restore ferre2.csproj'
@@ -12,8 +18,8 @@ pipeline {
         stage('Compilar proyecto (MSBuild)') {
             steps {
                 bat '''
-                for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\\**\\Bin\\MSBuild.exe`) do (
-                    "%%i" ferre2.csproj /p:Configuration=Release /p:Platform="Any CPU"
+                for /F "usebackq delims=" %%i in (`"C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\\**\\Bin\\MSBuild.exe`) do (
+                    "%%i" ferre2.csproj /p:Configuration=Debug
                 )
                 '''
             }
@@ -35,4 +41,3 @@ pipeline {
         }
     }
 }
-
