@@ -2,37 +2,21 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout') {
+        stage('Restore') {
             steps {
-                checkout scm
+                bat 'dotnet restore'
             }
         }
 
-        stage('Restaurar paquetes NuGet (packages.config)') {
+        stage('Build') {
             steps {
-                bat '''
-                if not exist nuget.exe (
-                    powershell -Command "Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe"
-                )
-                nuget.exe restore ferre2.csproj -SolutionDirectory .
-                '''
+                bat 'dotnet build --no-restore'
             }
         }
 
-        stage('Compilar proyecto (MSBuild)') {
+        stage('Test xUnit') {
             steps {
-                bat '''
-                for /F "usebackq delims=" %%i in (`"C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\\**\\Bin\\MSBuild.exe`) do (
-                    "%%i" ferre2.csproj /p:Configuration=Debug
-                )
-                '''
-            }
-        }
-
-        stage('Ejecutar pruebas xUnit') {
-            steps {
-                bat 'dotnet test PruebaUsuario/PruebaUsuario.csproj --no-build'
+                bat 'dotnet test PruebaUsuario.Tests/PruebaUsuario.Tests.csproj'
             }
         }
     }
@@ -46,5 +30,3 @@ pipeline {
         }
     }
 }
-
-
