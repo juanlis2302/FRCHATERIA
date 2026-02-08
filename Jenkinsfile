@@ -9,9 +9,14 @@ pipeline {
             }
         }
 
-        stage('Restaurar dependencias') {
+        stage('Restaurar paquetes NuGet (packages.config)') {
             steps {
-                bat 'dotnet restore ferre2.csproj'
+                bat '''
+                if not exist nuget.exe (
+                    powershell -Command "Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe"
+                )
+                nuget.exe restore ferre2.csproj
+                '''
             }
         }
 
@@ -41,3 +46,4 @@ pipeline {
         }
     }
 }
+
