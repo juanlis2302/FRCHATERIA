@@ -1,7 +1,8 @@
-﻿using ferre2.Models;
+﻿using Xunit;                // 👈 OBLIGATORIO
+using ferre2.Models;
+using System;
 
-
-namespace UnitTest1
+namespace testwi              // 👈 nombre del proyecto de pruebas
 {
     public class ProductoTests
     {
@@ -54,3 +55,4 @@ namespace UnitTest1
         }
     }
 }
+
