@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        MSBUILD = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe"'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -23,7 +27,7 @@ pipeline {
         stage('Build MVC') {
             steps {
                 bat '''
-                "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.csproj /p:Configuration=Debug
+                %MSBUILD% ferre2.csproj /p:Configuration=Debug
                 '''
             }
         }
@@ -31,7 +35,7 @@ pipeline {
         stage('Run xUnit Tests') {
             steps {
                 bat '''
-                dotnet test Ferre2.Tests/Ferre2.Tests.csproj --configuration Debug
+                dotnet test UnitTest1/UnitTest1.csproj --configuration Debug
                 '''
             }
         }
@@ -46,6 +50,7 @@ pipeline {
         }
     }
 }
+
 
 
 
