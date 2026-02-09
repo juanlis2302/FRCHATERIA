@@ -35,7 +35,7 @@ pipeline {
         stage('Run xUnit Tests') {
             steps {
                 bat '''
-                dotnet test UnitTest1/UnitTest1.csproj --configuration Debug
+                dotnet test testwi/testwi.csproj --configuration Debug
                 '''
             }
         }
@@ -43,13 +43,14 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build y pruebas ejecutadas correctamente'
+            echo '✅ Build y pruebas xUnit ejecutadas correctamente'
         }
         failure {
             echo '❌ Falló la compilación o las pruebas'
         }
     }
 }
+
 
 
 
