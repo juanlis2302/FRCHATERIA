@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/Elementos de la solución/">
     <File Path="Jenkinsfile" />
-    <Project Path="../Ferre2.Tests/Ferre2.Tests.csproj" Id="3e3c0608-4e1a-4960-b3aa-44a60d27f20c" />
   </Folder>
   <Project Path="ferre2.csproj" Id="e838444f-019e-4724-b0c8-f9cde0daae73" />
+  <Project Path="testwi/testwi.csproj" Id="00ea02f0-e701-4ad9-9172-fd1bb84da904" />
 </Solution>
