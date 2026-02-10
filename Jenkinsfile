@@ -9,13 +9,13 @@ pipeline {
             }
         }
 
-        stage('Restore NuGet MVC') {
+        stage('Restore MVC (NuGet)') {
             steps {
                 bat '''
                 if not exist nuget.exe (
                     powershell -Command "Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe"
                 )
-                nuget.exe restore ferre2\\ferre2.csproj
+                nuget.exe restore ferre2.csproj
                 '''
             }
         }
@@ -23,7 +23,15 @@ pipeline {
         stage('Build MVC') {
             steps {
                 bat '''
-                "C:\\Program Files (x86)\\Microsoft Visual Studio\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2\\ferre2.csproj /p:Configuration=Debug
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.csproj /p:Configuration=Debug
+                '''
+            }
+        }
+
+        stage('Restore Tests') {
+            steps {
+                bat '''
+                nuget.exe restore ferre2.Tests\\ferre2.Tests.csproj
                 '''
             }
         }
@@ -31,7 +39,6 @@ pipeline {
         stage('Build Tests') {
             steps {
                 bat '''
-                nuget.exe restore ferre2.Tests\\ferre2.Tests.csproj
                 "C:\\Program Files (x86)\\Microsoft Visual Studio\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.Tests\\ferre2.Tests.csproj /p:Configuration=Debug
                 '''
             }
@@ -48,7 +55,7 @@ pipeline {
 
     post {
         success {
-            echo "✅ Build y pruebas xUnit ejecutadas correctamente"
+            echo "✅ MVC compilado y pruebas xUnit ejecutadas correctamente"
         }
         failure {
             echo "❌ Falló la compilación o las pruebas"
