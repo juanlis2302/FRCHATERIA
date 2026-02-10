@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        MSBUILD = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe"'
-    }
-
     stages {
 
         stage('Checkout') {
@@ -13,13 +9,13 @@ pipeline {
             }
         }
 
-        stage('Restore MVC (NuGet)') {
+        stage('Restore NuGet') {
             steps {
                 bat '''
                 if not exist nuget.exe (
                     powershell -Command "Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe"
                 )
-                nuget.exe restore ferre2.csproj -SolutionDirectory .
+                nuget.exe restore ferre2.sln
                 '''
             }
         }
@@ -27,7 +23,7 @@ pipeline {
         stage('Build MVC') {
             steps {
                 bat '''
-                %MSBUILD% ferre2.csproj /p:Configuration=Debug
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe" ferre2.sln /p:Configuration=Debug
                 '''
             }
         }
@@ -35,7 +31,7 @@ pipeline {
         stage('Run xUnit Tests') {
             steps {
                 bat '''
-                dotnet test testwi/testwi.csproj --configuration Debug
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\BuildTools\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe" ferre2.Tests\\bin\\Debug\\ferre2.Tests.dll
                 '''
             }
         }
@@ -43,16 +39,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build y pruebas xUnit ejecutadas correctamente'
+            echo "✅ Build y pruebas ejecutadas correctamente"
         }
         failure {
-            echo '❌ Falló la compilación o las pruebas'
+            echo "❌ Falló la compilación o las pruebas"
         }
     }
 }
-
-
-
-
-
-
