@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../ferre2.Tests.xUnit/ferre2.Tests.xUnit.csproj" Id="cee55ab7-f8c5-4e78-ac02-e9e92fbdae1b" />
   <Project Path="ferre2.csproj" Id="e838444f-019e-4724-b0c8-f9cde0daae73" />
 </Solution>
